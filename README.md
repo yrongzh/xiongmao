@@ -9,14 +9,14 @@ HTTPS 发布后可直接在手机浏览器访问；实际鸿蒙兼容性仍需�
 
 ## 发布到 GitHub Pages
 
-将本目录中的 `index.html`、`LICENSE`、`rights.html`、`.nojekyll` 和本 README
-放在 `main` 分支根目录，然后打开仓库 Settings → Pages：
+本项目已经通过 GitHub Pages 发布：
 
-1. Source 选择 **Deploy from a branch**。
-2. Branch 选择 **main**，目录选择 **/(root)**，点击 Save。
-3. 等待 GitHub 显示部署成功；可用时启用 **Enforce HTTPS**。
+- 网页入口：https://yrongzh.github.io/xiongmao/
+- 权利声明：https://yrongzh.github.io/xiongmao/rights.html
 
-默认地址将是 https://yrongzh.github.io/xiongmao/ 。此地址只有部署成功后才可使用。
+当前发布源为 `main` 分支的 **/(root)** 目录，并已启用 HTTPS。以后更新
+`main` 中的 `index.html` 等文件后，GitHub Pages 会自动重新部署；部署状态可在
+仓库的 **Settings → Pages** 中查看。
 
 ## 权利说明
 
