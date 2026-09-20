@@ -140,6 +140,8 @@
 .actor.side-lying.side-head-raised .sprite{background-image:var(--side-head-raised)}
 .actor.custom-rest .sprite{background-image:var(--rest-pose-image);background-size:100% 100%!important;background-position:0 0!important;mask-image:none;-webkit-mask-image:none;filter:none}
 .side-prone-tail-wag .sprite{animation:none}
+.actor.idle-rest .sprite{background-image:var(--idle-rest);background-size:100% 100%!important;background-position:0 0!important;mask-image:none;-webkit-mask-image:none}
+:root{--idle-rest:url("panda-assets/idle-rest-87062efd9f25.png")}
 </style>
 </head>
 <body>
@@ -279,14 +281,14 @@
   </div>
 </div>
 
-<script id="bellyData" type="application/json">{"src":"panda-assets/belly-94e5ad0e2091.png","cellSize":512,"cols":4,"sourceFrames":[1,2,3,4,5,6,8,9,12],"restFrame":12,"down":[{"sourceFrame":2,"ms":85},{"sourceFrame":3,"ms":90},{"sourceFrame":5,"ms":110},{"sourceFrame":6,"ms":100},{"sourceFrame":8,"ms":90},{"sourceFrame":9,"ms":75},{"sourceFrame":12,"ms":65}],"up":[{"sourceFrame":9,"ms":75},{"sourceFrame":8,"ms":85},{"sourceFrame":6,"ms":100},{"sourceFrame":5,"ms":115},{"sourceFrame":4,"ms":110},{"sourceFrame":1,"ms":90}],"restSrc":"panda-assets/belly-rest-6ac65f0a32b5.png","restSize":1536}</script>
+<script id="bellyData" type="application/json">{"src":"panda-assets/belly-transition-63c205981bcf.png","cellSize":1280,"cols":4,"sourceFrames":[1,2,3,4,5,6,8,9,12],"restFrame":12,"down":[{"sourceFrame":2,"ms":85},{"sourceFrame":3,"ms":90},{"sourceFrame":5,"ms":110},{"sourceFrame":6,"ms":100},{"sourceFrame":8,"ms":90},{"sourceFrame":9,"ms":75},{"sourceFrame":12,"ms":65}],"up":[{"sourceFrame":9,"ms":75},{"sourceFrame":8,"ms":85},{"sourceFrame":6,"ms":100},{"sourceFrame":5,"ms":115},{"sourceFrame":4,"ms":110},{"sourceFrame":1,"ms":90}],"restSrc":"panda-assets/belly-rest-6ac65f0a32b5.png","restSize":1536}</script>
 <script id="sideProneBellyData" type="application/json">{"src":"panda-assets/side-prone-belly-673bfe8e4fdd.png","cellSize":1536,"cols":2,"rows":2,"frames":[0,1,2,3],"frameMs":100}</script>
 <script id="bellyWagData" type="application/json">{"cellSize":1536,"cols":3,"rows":3,"frames":[1,2,3,5,6,7,8],"loopFrames":[2,3,5,6,7,8],"cycles":3,"frameMs":{"2":70,"3":60,"5":70,"6":60,"7":60,"8":60},"startHoldMs":330,"endHoldMs":480,"src":"panda-assets/belly-wag-61b4dc4c3202.png"}</script>
 <script id="sceneData" type="application/json">{"hall":"panda-assets/hall-5137c9b5fb57.jpg","garden":"panda-assets/garden-142785b34ac2.jpg","foyer":"panda-assets/foyer-521f6297ab81.png"}</script>
 <script id="walkLeftData" type="application/json">{"src":"panda-assets/walk-left-dc6c4cd6ac59.png"}</script>
 <script id="walkRightData" type="application/json">{"src":"panda-assets/walk-right-88c2390ce778.png"}</script>
 <script id="proneWagData" type="application/json">{"cellWidth":550,"cellHeight":450,"cols":3,"rows":2,"count":5,"offsetX":0,"anchorWidth":550,"restFrame":0,"loopFrames":[1,2,3,4],"cycles":3,"loopDurations":[[50,40,50,50],[40,50,50,40],[50,50,40,50]],"finalDown2Ms":150,"frames":["静态","抬起1","抬起2","放下1","放下2"],"src":"panda-assets/prone-wag-b93de1ccbb00.png"}</script>
-<script id="idleWagData" type="application/json">{"cellWidth":640,"cellHeight":550,"cols":3,"rows":3,"count":9,"offsetX":96,"anchorWidth":512,"restFrame":0,"entryFrames":[1],"loopFrames":[2,3,4,5,6,7],"exitFrames":[8,0],"frameMs":[70,70,60,60,70,60,60,60,80],"cycles":[3,3],"speedRange":[0.85,1.15],"frames":[{"index":0,"name":"rest"},{"index":1,"name":"entry"},{"index":2,"name":"up-low"},{"index":3,"name":"up-middle"},{"index":4,"name":"turn-high"},{"index":5,"name":"down-high"},{"index":6,"name":"down-middle"},{"index":7,"name":"down-low"},{"index":8,"name":"exit"}],"src":"panda-assets/idle-wag-cba247cc3c7e.png"}</script>
+<script id="idleWagData" type="application/json">{"cellWidth":1280,"cellHeight":1100,"cols":3,"rows":3,"count":9,"offsetX":192,"anchorWidth":1024,"restFrame":0,"entryFrames":[1],"loopFrames":[2,3,4,5,6,7],"exitFrames":[8,0],"frameMs":[70,70,60,60,70,60,60,60,80],"cycles":[3,3],"speedRange":[0.85,1.15],"frames":[{"index":0,"name":"rest"},{"index":1,"name":"entry"},{"index":2,"name":"up-low"},{"index":3,"name":"up-middle"},{"index":4,"name":"turn-high"},{"index":5,"name":"down-high"},{"index":6,"name":"down-middle"},{"index":7,"name":"down-low"},{"index":8,"name":"exit"}],"src":"panda-assets/idle-wag-d8ae6729c772.png"}</script>
 <script id="walkData" type="application/json">{"file":"walk-atlas.png","width":1536,"height":1536,"cols":3,"rows":4,"cellWidth":512,"cellHeight":384,"count":12,"fps":8,"durationMs":1500,"distancePerCycle":190,"frameOrder":"left-to-right, top-to-bottom","direction":"right","sourceVideo":"MOV_0330","sourceStartSec":42.934,"sourceEndExclusiveSec":43.741,"rgbSource":"Approved fluffy straight fur right walk and per-frame mirrored left walk with heart marking","alignment":"Approved tail/root/middle-arc edits; left frames individually mirrored from right with local heart fur","transparency":"RGBA chromakey extraction","sha256":"88c2390ce77812175739dc3915ba56fd9fea4dd0fc4ae17dbec64b88a2122ef9","travelPixelsPerSecond":109.25,"referenceMultiplier":1.5,"referenceFPS":12}</script>
 <script>
 /* Shared geometry for the editor, export, and nonvisual gesture tests. */
@@ -404,8 +406,8 @@
 });
 
 </script>
-<script id="sideProneWagData" type="application/json">{"cellWidth":1536,"cellHeight":1024,"cols":3,"rows":2,"count":5,"restFrame":0,"offsetX":0,"anchorWidth":1536,"sequence":[0,1,2,3,4,0,1,2,2,3,4,0],"frameMs":45,"cycles":3,"src":"panda-assets/side-prone-wag-6e3256fcc938.png"}</script>
-<script type="application/json" id="restPoseData">[{"pose":2,"label":"趴着"},{"pose":8,"label":"侧着趴下","width":1536,"height":1024,"src":"panda-assets/side-prone-7dbcb8aebbc5.png"}]</script>
+<script id="sideProneWagData" type="application/json">{"cellWidth":1536,"cellHeight":1536,"cols":3,"rows":2,"count":5,"restFrame":0,"offsetX":0,"anchorWidth":1536,"sequence":[0,1,2,3,4,0,1,2,2,3,4,0],"frameMs":45,"cycles":3,"src":"panda-assets/side-prone-wag-67e1cd6425a0.png"}</script>
+<script type="application/json" id="restPoseData">[{"pose":2,"label":"趴着"},{"pose":8,"label":"侧着趴下","width":1536,"height":1536,"src":"panda-assets/side-prone-rest-1d206f42a828.png"}]</script>
 <script>
 (()=>{'use strict';
 const $=id=>document.getElementById(id),scene=$('scene'),actor=$('panda'),sprite=$('sprite'),walkCanvas=$('walkCanvas'),walkContext=walkCanvas.getContext('2d');
@@ -419,6 +421,7 @@ assets.pawOther=new Image();assets.pawOther.src=cssAsset('--paw-other');
 assets.pawFirst=new Image();assets.pawFirst.src=cssAsset('--paw-first');
 assets.sideLying=new Image();assets.sideLying.src=cssAsset('--side-lying');
 assets.sideHead=new Image();assets.sideHead.src=cssAsset('--side-head-raised');
+assets.idleRest=new Image();assets.idleRest.src=cssAsset('--idle-rest');
 state.sideHeadRaised=false;state.sideHeadTimer=null;
 state.pawSide=0;
 // Add future resting poses to restPoseData; selection, display, capture and stable state use this pool.
@@ -543,7 +546,7 @@ function restorePlace(){
 function syncPresence(){
  const here=isHere(),entering=isEntering();
  actor.hidden=!state.walkReady||!here;
- actor.style.width=(state.pose===6?bellyWidth():places[state.dogScene].width)+'%';
+ actor.style.width=((state.pose===6||state.pose===8)?bellyWidth():places[state.dogScene].width)+'%';
  actor.style.left=state.x+'%';actor.style.top=state.y+'%';
  actor.style.pointerEvents=entering?'none':'';
  $('paw').disabled=!state.walkReady||!here||state.moving||entering||state.sceneLoading;
@@ -930,7 +933,7 @@ function activeTailWag(){
 }
 
 const focusStack=[];const last=items=>items[items.length-1];
-function setPose(n){cancelSideProneWag(false);cancelSideHead();const resting=restPoseOption(n);actor.classList.toggle('custom-rest',Boolean(resting&&resting.image));actor.classList.toggle('side-lying',n===7);actor.classList.toggle('handshaking',n===1);if(n!==1)state.pawSide=0;actor.classList.toggle('paw-other',n===1&&state.pawSide===1);cancelBellyWag();cancelIdleWag();cancelProneWag(false);if(n===6){showBellyPose();return;}hideBellyPose();state.pose=n;if(resting&&resting.image){actor.style.setProperty('--rest-pose-image','url("'+resting.src+'")');actor.style.aspectRatio=`${resting.width}/${resting.height}`;actor.classList.remove('asleep');sprite.hidden=false;walkCanvas.hidden=true;return;}if(n===7){actor.style.aspectRatio='1600/1024';actor.classList.remove('asleep');sprite.hidden=false;walkCanvas.hidden=true;return;}const [x,y,w,h]=cells[n];const sx=1536/w*100,sy=1024/h*100,px=x/(1536-w)*100,py=y/(1024-h)*100;sprite.style.backgroundSize=`${sx}% ${sy}%`;sprite.style.backgroundPosition=`${px}% ${py}%`;sprite.style.maskSize=`${sx}% ${sy}%`;sprite.style.webkitMaskSize=`${sx}% ${sy}%`;sprite.style.maskPosition=`${px}% ${py}%`;sprite.style.webkitMaskPosition=`${px}% ${py}%`;actor.style.aspectRatio=`${w}/${h}`;actor.classList.toggle('asleep',n===5);sprite.hidden=false;walkCanvas.hidden=true;if(n===2&&state.proneWagReady)showProneWagFrame(proneWagMeta.restFrame);}
+function setPose(n){actor.classList.toggle('idle-rest',n===0);cancelSideProneWag(false);cancelSideHead();const resting=restPoseOption(n);actor.classList.toggle('custom-rest',Boolean(resting&&resting.image));actor.classList.toggle('side-lying',n===7);actor.classList.toggle('handshaking',n===1);if(n!==1)state.pawSide=0;actor.classList.toggle('paw-other',n===1&&state.pawSide===1);cancelBellyWag();cancelIdleWag();cancelProneWag(false);if(n===6){showBellyPose();return;}hideBellyPose();state.pose=n;if(n===8){const half=bellyWidth()/2+2;state.x=Math.max(half,Math.min(100-half,state.x));}if(resting&&resting.image){actor.style.setProperty('--rest-pose-image','url("'+resting.src+'")');actor.style.aspectRatio=`${resting.width}/${resting.height}`;actor.classList.remove('asleep');sprite.hidden=false;walkCanvas.hidden=true;return;}if(n===7){actor.style.aspectRatio='1600/1024';actor.classList.remove('asleep');sprite.hidden=false;walkCanvas.hidden=true;return;}const [x,y,w,h]=cells[n];const sx=1536/w*100,sy=1024/h*100,px=x/(1536-w)*100,py=y/(1024-h)*100;sprite.style.backgroundSize=`${sx}% ${sy}%`;sprite.style.backgroundPosition=`${px}% ${py}%`;sprite.style.maskSize=`${sx}% ${sy}%`;sprite.style.webkitMaskSize=`${sx}% ${sy}%`;sprite.style.maskPosition=`${px}% ${py}%`;sprite.style.webkitMaskPosition=`${px}% ${py}%`;actor.style.aspectRatio=`${w}/${h}`;actor.classList.toggle('asleep',n===5);sprite.hidden=false;walkCanvas.hidden=true;if(n===2&&state.proneWagReady)showProneWagFrame(proneWagMeta.restFrame);}
 function stop(){cancelSideProneWag();cancelSideHead();cancelIdleWag();cancelProneWag();clearTimeout(state.timer);state.timer=null;if(state.raf!==null)cancelAnimationFrame(state.raf);state.raf=null;state.motion=null;const wasMoving=state.moving;state.moving=false;actor.classList.remove('walking');if(wasMoving)setPose(0);}
 function note(text){
  const message=$('sceneNote'),here=isHere();
@@ -1098,6 +1101,7 @@ function captureActor(){
  const wag=activeTailWag();if(wag){cut.width=wag.canvas.width;cut.height=wag.canvas.height;cut.getContext('2d').drawImage(wag.canvas,0,0);return cut;}
  if(state.pose===6&&!bellyCanvas.hidden){cut.width=bellyCanvas.width;cut.height=bellyCanvas.height;cut.getContext('2d').drawImage(bellyCanvas,0,0);return cut;}
  if(state.moving&&!walkCanvas.hidden){cut.width=walkCanvas.width;cut.height=walkCanvas.height;cut.getContext('2d').drawImage(walkCanvas,0,0);return cut;}
+ if(state.pose===0){cut.width=1024;cut.height=1100;cut.getContext('2d').drawImage(assets.idleRest,0,0);return cut;}
  if(state.pose===1){cut.width=496;cut.height=550;cut.getContext('2d').drawImage(state.pawSide===1?assets.pawOther:assets.pawFirst,0,state.pawSide===1?cut.height*27/1321:0,cut.width,cut.height);return cut;}
  if(state.pose===7){cut.width=1600;cut.height=1024;cut.getContext('2d').drawImage(state.sideHeadRaised?assets.sideHead:assets.sideLying,0,0);return cut;}
  const resting=restPoseOption(state.pose);if(resting&&resting.image){cut.width=resting.width;cut.height=resting.height;cut.getContext('2d').drawImage(resting.image,0,0);return cut;}
@@ -1136,7 +1140,7 @@ async function takePhoto(){
 }
 $('shareSnapshot').addEventListener('click',async()=>{try{const file=new File([state.snapshotBlob],'熊猫的小家.png',{type:'image/png'});await navigator.share({files:[file]});}catch(e){if(e.name!=='AbortError')$('saveStatus').textContent='可以长按图片保存。';}});
 async function prepareAlphaMask(){
- await Promise.all([ready(assets.atlas),ready(assets.mask),ready(assets.pawOther),ready(assets.pawFirst),ready(assets.sideLying),ready(assets.sideHead),...restPoseOptions.filter(spec=>spec.image).map(spec=>ready(spec.image))]);
+ await Promise.all([ready(assets.atlas),ready(assets.mask),ready(assets.pawOther),ready(assets.pawFirst),ready(assets.sideLying),ready(assets.sideHead),ready(assets.idleRest),...restPoseOptions.filter(spec=>spec.image).map(spec=>ready(spec.image))]);
  const {cols,rows,cellWidth,cellHeight,count,fps}=walkMeta;
  if(![cols,rows,cellWidth,cellHeight,count].every(n=>Number.isInteger(n)&&n>0)||count<2||count>cols*rows||!Number.isFinite(fps)||fps<=0)throw new Error('Invalid walk atlas');
  await prepareBellySprite().catch(()=>{cancelBelly();setPose(0);});
@@ -1223,12 +1227,15 @@ function createOutingFeature() {
     posePromise = (async () => {
       const bellyImage = new Image(); bellyImage.src = bellyMeta.restSrc;
       const proneImage = new Image(); proneImage.src = proneWagMeta.src;
-      await Promise.all([ready(assets.atlas), ready(assets.mask), ready(bellyImage), ready(proneImage), ready(assets.pawFirst)]);
+      await Promise.all([ready(assets.atlas), ready(assets.mask), ready(bellyImage), ready(proneImage), ready(assets.pawFirst), ready(assets.idleRest)]);
       const result = poseSpecs.map(spec => {
         const canvas = document.createElement('canvas');
         if (spec.id === 'belly') {
           canvas.width = canvas.height = bellyMeta.restSize;
           canvas.getContext('2d').drawImage(bellyImage,0,0);
+        } else if (spec.cell === 0) {
+          canvas.width=1024;canvas.height=1100;
+          canvas.getContext('2d').drawImage(assets.idleRest,0,0);
         } else if (spec.cell === 1) {
           canvas.width=496;canvas.height=550;
           canvas.getContext('2d').drawImage(assets.pawFirst,0,0,canvas.width,canvas.height);
