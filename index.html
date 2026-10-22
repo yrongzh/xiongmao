@@ -142,6 +142,24 @@
 .side-prone-tail-wag .sprite{animation:none}
 .actor.idle-rest .sprite{background-image:var(--idle-rest);background-size:100% 100%!important;background-position:0 0!important;mask-image:none;-webkit-mask-image:none}
 :root{--idle-rest:url("panda-assets/idle-rest-87062efd9f25.png")}
+
+/* Keep the original 44px grid slot even while its entry button is invisible. */
+.frisbee-entry{width:44px;height:44px;padding:0;border:0;background:none;align-self:center;line-height:0;touch-action:manipulation}
+.frisbee-entry[aria-hidden=true]{visibility:hidden;pointer-events:none}
+.frisbee-entry .frisbee-icon{width:44px;height:44px}
+.frisbee-field{position:absolute;z-index:2;pointer-events:none;line-height:0}
+.frisbee-canvas{display:block;width:100%;height:100%;pointer-events:none}
+.frisbee-throw{position:absolute;z-index:1;display:block;min-width:0;min-height:0;padding:0;border:0;border-radius:50%;background:none;pointer-events:auto;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;transform-origin:50% 50%;cursor:grab}
+.frisbee-throw:active{cursor:grabbing}
+.frisbee-throw:disabled{opacity:1;cursor:default;pointer-events:none}
+.frisbee-throw img{display:block;width:100%;height:100%;pointer-events:none;user-select:none;-webkit-user-select:none;-webkit-user-drag:none}
+.frisbee-retrieve{position:absolute;z-index:1;min-width:0;min-height:0;padding:0;border:0;border-radius:50%;background:none;pointer-events:auto;touch-action:manipulation;cursor:pointer}
+.frisbee-retrieve:disabled{pointer-events:none}
+
+
+#helpOverlay .help{display:flex;flex-direction:column;max-height:100%;overflow:hidden;padding:0}
+#helpOverlay .panel-head{flex:none;margin:0;padding:18px 18px 14px;background:#e9eeed;border-bottom:1px solid #bac8cf}
+#helpOverlay .help-content{min-height:0;overflow-y:auto;padding:0 18px 18px;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
 </style>
 </head>
 <body>
@@ -156,7 +174,7 @@
 <button class="actor" id="panda" aria-label="摸一摸" title="摸一摸"><span class="sprite" id="sprite"></span><canvas class="walk-canvas" id="walkCanvas" aria-hidden="true" hidden></canvas><canvas class="belly-canvas" id="bellyCanvas" aria-hidden="true" hidden></canvas><canvas class="idle-wag-canvas" id="idleWagCanvas" aria-hidden="true" hidden></canvas><canvas class="prone-wag-canvas" id="proneWagCanvas" aria-hidden="true" hidden></canvas><canvas class="prone-wag-canvas" id="sideProneWagCanvas" aria-hidden="true" hidden></canvas></button>
 <span class="scene-note" id="sceneNote" aria-live="polite" hidden>熊猫在这里</span>
 </section>
-<nav class="controls" aria-label="和熊猫玩"><button class="action" id="paw">握握手</button><button class="action" id="rest" aria-pressed="false">趴一会儿</button><button class="action" id="come">叫过来</button><img class="frisbee-icon" src="panda-assets/frisbee-3e49f54d61a6.png" width="44" height="44" alt="飞盘" draggable="false"></nav>
+<nav class="controls" aria-label="和熊猫玩"><button class="action" id="paw">握握手</button><button class="action" id="rest" aria-pressed="false">趴一会儿</button><button class="action" id="come">叫过来</button><button type="button" class="frisbee-entry" id="frisbeeEnter" aria-label="玩飞盘" aria-hidden="false"><img class="frisbee-icon" src="panda-assets/frisbee-3e49f54d61a6.png" width="44" height="44" alt="" draggable="false"></button></nav>
 </div>
 <p class="hint" id="playHint">用手指点一点熊猫，也可以点地板叫它过去</p>
 </main>
@@ -168,7 +186,7 @@
   </section>
 </div>
 <div class="overlay" id="snapshotOverlay" role="dialog" aria-modal="true" aria-labelledby="snapshotTitle" hidden><section class="panel"><div class="panel-head"><h2 id="snapshotTitle">熊猫的这张照片</h2><button class="close" data-close aria-label="关闭拍照">×</button></div><img class="snapshot" id="snapshot" alt="熊猫在小家里的照片"><div class="save-actions"><a id="saveSnapshot" class="navbtn" download="熊猫的小家.png">保存图片</a><button class="navbtn" id="shareSnapshot" hidden>分享图片</button></div><p class="small" style="text-align:center">也可以长按图片，选择保存。</p><p class="status" id="saveStatus" aria-live="polite"></p></section></div>
-<div class="overlay" id="helpOverlay" role="dialog" aria-modal="true" aria-labelledby="helpTitle" hidden><section class="panel help"><div class="panel-head"><h2 id="helpTitle">怎么和熊猫玩</h2><button class="close" data-close aria-label="关闭使用说明">×</button></div>
+<div class="overlay" id="helpOverlay" role="dialog" aria-modal="true" aria-labelledby="helpTitle" hidden><section class="panel help"><div class="panel-head"><h2 id="helpTitle">怎么和熊猫玩</h2><button class="close" data-close aria-label="关闭使用说明">×</button></div><div class="help-content">
 <p><strong>换个地方：</strong>点画面左上角的“在客厅 ▾”，再点位置名称，就能去客厅、走廊、院子或玄关。当前所在的位置旁会有小勾，左上角也会显示你现在在哪儿。</p>
 <p><strong>叫熊猫过来：</strong>换场景时，熊猫会留在原来的地方。下面会提示它在哪儿，点“叫过来”，它才会从画面边上迈步走进来。回到它所在的场景，也能直接找到它。</p>
 <p><strong>摸一摸：</strong>用手指点一点熊猫，就能摸摸它。有时它会顺势躺下来露出肚子，想让你继续摸。继续用手指点一点它，摸舒服了，它就会自己起来；每次想躺下和想摸多久都会有点不同，不用急着连点。</p>
@@ -177,11 +195,11 @@
 <p>侧躺时摸摸，如果没有露肚皮，它会抬起头看看你。继续摸会保持抬头，停摸 2 秒后会放下头，重新侧躺休息。</p>
 <p>熊猫坐着或趴着时，8 秒不操作，它会侧躺下来；再过 5 秒没有操作，就会蜷起来睡觉。已经侧躺时也按这个时间计时，中途操作会重新计时。你去了别的房间，它也会在原来的房间这样休息、睡着。</p>
 <p>熊猫还没过来时，握手和趴下按钮会暂时变灰。再点“叫过来”不会让它重复进场。</p>
-<p><strong>飞盘：</strong>飞盘功能还没加入，底部的飞盘图标暂时仅作展示。</p>
+<p><strong>飞盘：</strong>走廊和院子可以玩飞盘，点底部的小飞盘开始。滑动或点一下大飞盘，也可以按“扔出去”。熊猫回来落地后会等你，点它叼着的飞盘或按“拿回来”，手才会伸出取盘。取回后可以继续扔；“夸熊猫”能让路上的熊猫加快脚步。“不玩啦”回到休息状态。</p>
 <p>右上角的相册里有照片和小录像。点开后可左右滑动切换；录像点击播放，声音用录像自带的控件调整。右上角“截图”一按就定格当前场景；熊猫不在这里时，也可以只拍风景。预览后可以直接保存，或添加图片合影。</p>
 <p class="small">这个浏览器会尽量记住你上次看的场景和熊猫的位置。小家、背景和熊猫动作是参考素材创作的插画；走路的迈步姿势参考了熊猫的原录像。</p>
 <p><strong>一起合照：</strong>右上角“合照 ▾”可选“出门合照”或“在小家合照”，分别用自己的照片或当前房间作背景。场景菜单里的“出门”直接打开相机拍照。合照最多加载两张照片：在小家合照或截图后合影，可添加两张透明背景照片，小屋背景和熊猫不占名额；出门合照使用加载或拍摄的照片作背景时，背景占一张，还能添加一张透明背景照片。点选对象，单指移动、双指缩放和旋转；熊猫可用姿势窗口换动作。“图层”里可上移、下移或拖动排序，背景固定在最底。截图里的熊猫保持原瞬间的动作和位置，只能调整前后顺序；后来加入的图片仍能自由摆放。照片只在本机处理。</p>
-<p class="small">不需要登录。手机上可以打开已发布的网页；本地使用请保留网页和配套素材文件夹，通过本地预览地址打开。聊天软件和系统文件预览可能只显示画面。</p></section></div>
+<p class="small">不需要登录。手机上可以打开已发布的网页；本地使用请保留网页和配套素材文件夹，通过本地预览地址打开。聊天软件和系统文件预览可能只显示画面。</p></div></section></div>
 <div id="outingOverlay" class="outing-overlay" role="dialog" aria-modal="true" aria-labelledby="outingTitle" hidden>
   <section class="outing-panel">
     <header class="outing-header">
@@ -408,6 +426,7 @@
 </script>
 <script id="sideProneWagData" type="application/json">{"cellWidth":1536,"cellHeight":1536,"cols":3,"rows":2,"count":5,"restFrame":0,"offsetX":0,"anchorWidth":1536,"sequence":[0,1,2,3,4,0,1,2,2,3,4,0],"frameMs":45,"cycles":3,"src":"panda-assets/side-prone-wag-67e1cd6425a0.png"}</script>
 <script type="application/json" id="restPoseData">[{"pose":2,"label":"趴着"},{"pose":8,"label":"侧着趴下","width":1536,"height":1536,"src":"panda-assets/side-prone-rest-1d206f42a828.png"}]</script>
+<script id="frisbeeData" type="application/json">{"version":1,"sourceWidth":1792,"sourceHeight":1616,"width":896,"height":808,"columns":4,"pages":[{"src":"panda-assets/frisbee-play/journey-1-0fd1ec9b34f7.png","width":3584,"height":1616},{"src":"panda-assets/frisbee-play/journey-2-5c4eed347862.png","width":3584,"height":1616},{"src":"panda-assets/frisbee-play/journey-3-add2881d9203.png","width":3584,"height":1616},{"src":"panda-assets/frisbee-play/journey-4-4539c701a79d.png","width":3584,"height":1616},{"src":"panda-assets/frisbee-play/journey-5-63b1027f4d4f.png","width":3584,"height":1616},{"src":"panda-assets/frisbee-play/journey-6-f4736ea508db.png","width":3584,"height":1616},{"src":"panda-assets/frisbee-play/journey-7-1fa68a310e08.png","width":3584,"height":1616},{"src":"panda-assets/frisbee-play/journey-8-7fd8b1f29dcf.png","width":3584,"height":808}],"frames":[{"id":"D01","phase":"outbound","duration":70,"page":0,"x":0,"y":0},{"id":"D02","phase":"outbound","duration":70,"page":0,"x":896,"y":0},{"id":"D03","phase":"outbound","duration":70,"page":0,"x":1792,"y":0},{"id":"D04","phase":"outbound","duration":70,"page":0,"x":2688,"y":0},{"id":"D05","phase":"outbound","duration":70,"page":0,"x":0,"y":808},{"id":"D06","phase":"outbound","duration":70,"page":0,"x":896,"y":808},{"id":"D07","phase":"outbound","duration":70,"page":0,"x":1792,"y":808},{"id":"D08","phase":"outbound","duration":70,"page":0,"x":2688,"y":808},{"id":"D09","phase":"outbound","duration":70,"page":1,"x":0,"y":0},{"id":"D10","phase":"outbound","duration":70,"page":1,"x":896,"y":0},{"id":"D11","phase":"outbound","duration":70,"page":1,"x":1792,"y":0},{"id":"D12","phase":"outbound","duration":70,"page":1,"x":2688,"y":0},{"id":"D13","phase":"outbound","duration":100,"page":1,"x":0,"y":808},{"id":"D14","phase":"outbound","duration":100,"page":1,"x":896,"y":808},{"id":"J01","phase":"catch","duration":80,"page":1,"x":1792,"y":808},{"id":"J02","phase":"catch","duration":60,"page":1,"x":2688,"y":808},{"id":"J03","phase":"catch","duration":160,"page":2,"x":0,"y":0},{"id":"J04","phase":"catch","duration":60,"page":2,"x":896,"y":0},{"id":"J05","phase":"catch","duration":100,"page":2,"x":1792,"y":0},{"id":"J06","phase":"catch","duration":140,"page":2,"x":2688,"y":0},{"id":"J07","phase":"catch","duration":140,"page":2,"x":0,"y":808},{"id":"J08","phase":"catch","duration":220,"page":2,"x":896,"y":808},{"id":"J09","phase":"catch","duration":140,"page":2,"x":1792,"y":808},{"id":"J10","phase":"catch","duration":130,"page":2,"x":2688,"y":808},{"id":"J11","phase":"catch","duration":60,"page":3,"x":0,"y":0},{"id":"J12","phase":"catch","duration":480,"page":3,"x":896,"y":0},{"id":"T01","phase":"turn","duration":100,"page":3,"x":1792,"y":0},{"id":"B02","phase":"turn","duration":100,"page":3,"x":2688,"y":0},{"id":"R01","phase":"return","duration":100,"page":3,"x":0,"y":808},{"id":"R02","phase":"return","duration":100,"page":3,"x":896,"y":808},{"id":"R03","phase":"return","duration":100,"page":3,"x":1792,"y":808},{"id":"R04","phase":"return","duration":100,"page":3,"x":2688,"y":808},{"id":"R05","phase":"return","duration":100,"page":4,"x":0,"y":0},{"id":"R06","phase":"return","duration":100,"page":4,"x":896,"y":0},{"id":"R07","phase":"return","duration":100,"page":4,"x":1792,"y":0},{"id":"R08","phase":"return","duration":100,"page":4,"x":2688,"y":0},{"id":"R09","phase":"return","duration":100,"page":4,"x":0,"y":808},{"id":"R10","phase":"return","duration":100,"page":4,"x":896,"y":808},{"id":"R11","phase":"return","duration":100,"page":4,"x":1792,"y":808},{"id":"R12","phase":"return","duration":100,"page":4,"x":2688,"y":808},{"id":"R13","phase":"return","duration":100,"page":5,"x":0,"y":0},{"id":"R14","phase":"return","duration":100,"page":5,"x":896,"y":0},{"id":"R15","phase":"return","duration":100,"page":5,"x":1792,"y":0},{"id":"R16","phase":"return","duration":100,"page":5,"x":2688,"y":0},{"id":"R17","phase":"return","duration":100,"page":5,"x":0,"y":808},{"id":"R18","phase":"return","duration":100,"page":5,"x":896,"y":808},{"id":"R19","phase":"return","duration":100,"page":5,"x":1792,"y":808},{"id":"R20","phase":"return","duration":100,"page":5,"x":2688,"y":808},{"id":"R21","phase":"return","duration":100,"page":6,"x":0,"y":0},{"id":"R22","phase":"return","duration":100,"page":6,"x":896,"y":0},{"id":"R23","phase":"return","duration":100,"page":6,"x":1792,"y":0},{"id":"R24","phase":"return","duration":100,"page":6,"x":2688,"y":0},{"id":"R25","phase":"return","duration":100,"page":6,"x":0,"y":808},{"id":"R26","phase":"return","duration":100,"page":6,"x":896,"y":808},{"id":"R27","phase":"return","duration":100,"page":6,"x":1792,"y":808},{"id":"R28","phase":"return","duration":100,"page":6,"x":2688,"y":808},{"id":"R29","phase":"return","duration":100,"page":7,"x":0,"y":0},{"id":"R30","phase":"handoff","duration":180,"page":7,"x":896,"y":0},{"id":"R31","phase":"handoff","duration":160,"page":7,"x":1792,"y":0},{"id":"R33","phase":"handoff","duration":200,"page":7,"x":2688,"y":0}],"ready":"panda-assets/frisbee-play/ready-r33-10bccb87dc0f.png","disc":"panda-assets/frisbee-play/throwable-disc-4dc181f6eb6b.png","discRect":{"x":560.355614973262,"y":1089.3480741797432,"width":734.0909090909091,"height":403.96433666191155},"landed":"panda-assets/frisbee-play/landed-wait-3cb6b2611661.png","heldDiscRect":{"x":532,"y":855,"width":587,"height":488},"launch":{"id":"D00","src":"panda-assets/frisbee-play/launch-turn-d00-ebaf5e7bec4d.png","width":896,"height":808,"sourceOffsetX":0,"playback":"single-fixed-frame","duration":100},"foot":{"x":658.6077669902912,"y":1602},"idleFoot":{"x":0.6216792692719486,"y":0.9554545454545454},"sceneBounds":{"left":20,"top":0,"right":1569,"bottom":1616},"throwTarget":{"x":971.5070745264212,"y":757.265260532828,"width":237},"throwDuration":100,"normalRate":1,"praisedRate":1.8}</script>
 <script>
 (()=>{'use strict';
 const $=id=>document.getElementById(id),scene=$('scene'),actor=$('panda'),sprite=$('sprite'),walkCanvas=$('walkCanvas'),walkContext=walkCanvas.getContext('2d');
@@ -416,6 +435,7 @@ const walkMeta=JSON.parse($('walkData').textContent);
 const cells=[[0,0,512,550],[472,0,496,550],[960,85,550,450],[0,560,530,450],[530,560,520,450],[1040,560,496,450]];
 const state={pose:0,x:40,y:75,rest:0,moving:false,timer:null,raf:null,motion:null,walkReady:false,walkFrame:0,facing:1,dialogStack:[],snapshotBlob:null,snapshotUrl:null};
 let sceneNoteTimer=null;
+let frisbeeFeature=null;
 const assets={atlas:new Image(),mask:new Image()};const cssAsset=name=>getComputedStyle(document.documentElement).getPropertyValue(name).trim().replace(/^url\((['"]?)(.*?)\1\)$/,'$2');assets.atlas.src=cssAsset('--atlas');assets.mask.src=cssAsset('--matte');
 assets.pawOther=new Image();assets.pawOther.src=cssAsset('--paw-other');
 assets.pawFirst=new Image();assets.pawFirst.src=cssAsset('--paw-first');
@@ -483,7 +503,7 @@ for(const id of Object.keys(places)){
  const image=new Image();image.src=id==='living'?$('room').src:sceneFiles[id];placeImages[id]=image;
 }
 Object.assign(state,{viewScene:'living',dogScene:'living',sceneChange:0,sceneLoading:false,lastPageActivity:Date.now(),sleepTimer:null,autoLieSince:null,sleepPointers:new Set()});
-function canAutoSleep(){return state.walkReady&&!state.sceneLoading&&!state.moving&&!bellyActive()&&(state.pose===0||isRestPose(state.pose)||state.pose===7)&&state.sleepPointers.size===0;}
+function canAutoSleep(){return !frisbeeFeature?.active&&state.walkReady&&!state.sceneLoading&&!state.moving&&!bellyActive()&&(state.pose===0||isRestPose(state.pose)||state.pose===7)&&state.sleepPointers.size===0;}
 function scheduleAutoSleep(){
  clearTimeout(state.sleepTimer);state.sleepTimer=null;
  if(!canAutoSleep()){state.autoLieSince=null;return;}
@@ -560,6 +580,7 @@ function syncPresence(){
  scene.dataset.place=state.viewScene;scene.dataset.dogPlace=state.dogScene;
  scene.dataset.presence=here?(entering?'entering':'present'):'away';
  if(!here)note('');
+ frisbeeFeature?.sync();
  scheduleAutoSleep();
 }
 function updatePlaceChoices(){
@@ -579,6 +600,7 @@ async function choosePlace(id){
  state.sceneLoading=true;syncPresence();
  try{
   await ready(placeImages[id]);if(request!==state.sceneChange)return;
+  frisbeeFeature?.exit(false);
   // A real scene change ends the current interaction, without moving the dog to the viewer.
   if(state.motion&&state.motion.entry){state.x=state.motion.toX;state.y=state.motion.toY;}
   const restingPose=!state.moving&&!bellyActive()&&isStablePose(state.pose)?state.pose:0;
@@ -611,6 +633,7 @@ function setupPlaces(){
  window.addEventListener('pagehide',savePlace);updatePlaceChoices();setPose(state.pose);syncPresence();
 }
 function availableForTouch(){
+ if(frisbeeFeature?.active)return false;
  if(!isHere()){note('');return false;}
  if(isEntering()){note('正在走过来啦');return false;}
  return state.walkReady&&!state.sceneLoading;
@@ -636,6 +659,7 @@ function runWalk(x,y,entry=false){
  state.raf=requestAnimationFrame(time=>stepWalk(time,motion));
 }
 function callPanda(){
+ if(frisbeeFeature?.active){frisbeeFeature.praise();return;}
  if(bellyActive())return;
  if(!state.walkReady||state.sceneLoading){note('熊猫还在准备，请稍等一下');return;}
  if(isHere()){if(isEntering()){note('正在走过来啦');return;}move(...places[state.viewScene].call);return;}
@@ -946,7 +970,7 @@ function note(text){
  },1500);
 }
 function resetRest(){state.rest=0;$('rest').setAttribute('aria-pressed','false');}
-function heart(){const p=document.createElement('span');p.className='heart';p.textContent='♡';p.style.left=`${state.x}%`;p.style.top=`${Math.max(10,state.y-27)}%`;scene.appendChild(p);setTimeout(()=>p.remove(),1600);}
+function heart(x=state.x,y=Math.max(10,state.y-27)){const p=document.createElement('span');p.className='heart';p.textContent='♡';p.style.left=`${x}%`;p.style.top=`${y}%`;scene.appendChild(p);setTimeout(()=>p.remove(),1600);}
 function cancelSideHead(){
  clearTimeout(state.sideHeadTimer);state.sideHeadTimer=null;
  state.sideHeadRaised=false;actor.classList.remove('side-head-raised');
@@ -961,6 +985,7 @@ function raiseSideHead(){
  },2000);
 }
 function pet(){
+ if(frisbeeFeature?.active)return;
  if(state.moving)return;
  if(!availableForTouch())return;
  if(state.pose===1&&!state.moving&&!bellyActive()){
@@ -983,13 +1008,14 @@ function sitUp(){
  stop();resetRest();setPose(0);syncPresence();savePlace();note('坐起来啦');
 }
 function paw(){
+ if(frisbeeFeature?.active){frisbeeFeature.exit();return;}
  if(state.moving||!availableForTouch())return;
  if(needsSitUp()){sitUp();return;}
  const nextSide=state.pose===1?1-state.pawSide:0;
  stop();resetRest();state.pawSide=nextSide;setPose(1);syncPresence();savePlace();heart();note('握握手');
  state.timer=setTimeout(()=>{setPose(0);syncPresence();savePlace();note('熊猫在这里');},2200);
 }
-function rest(){if(state.moving||bellyActive()||!availableForTouch())return;const chosen=restPoseOptions[Math.floor(Math.random()*restPoseOptions.length)];stop();state.rest=1;setPose(chosen.pose);syncPresence();savePlace();note('趴一会儿');}
+function rest(){if(frisbeeFeature?.active){frisbeeFeature.primaryAction('button');return;}if(state.moving||bellyActive()||!availableForTouch())return;const chosen=restPoseOptions[Math.floor(Math.random()*restPoseOptions.length)];stop();state.rest=1;setPose(chosen.pose);syncPresence();savePlace();note('趴一会儿');}
 // Both directional atlases are already oriented and graded for display.
 async function prepareDirectionalWalk(){
  await Promise.all([['walkLeftData','walkLeft'],['walkRightData','walkRight']].map(async ([id,key])=>{
@@ -1776,6 +1802,18 @@ function createOutingFeature() {
     const ratio=bg.width/sceneBox.width;
     paintSceneBackground(bg.getContext('2d'),background,bg.width);
     const moment={background:bg,width:bg.width,height:bg.height,roomId:state.viewScene,frozen:null};
+    if(frisbeeFeature?.active){
+      const cut=document.createElement('canvas');cut.width=bg.width;cut.height=bg.height;
+      if(frisbeeFeature.paintCapture(cut.getContext('2d'),ratio)){
+        const bounds=alphaBounds(cut);
+        moment.frozen=Object.freeze({
+          pose:Object.freeze({id:'frozen',label:'截图瞬间',canvas:cut,bounds,anchor:{x:0,y:0},unit:1}),
+          transform:Object.freeze({x:0,y:0,scale:core.WIDTH/bg.width,angle:0}),
+          frame:Object.freeze({frisbee:frisbeeFeature.frame})
+        });
+        return moment;
+      }
+    }
     if(!isHere()||actor.hidden)return moment;
     const wagging=activeTailWag();
     const visible=wagging?wagging.canvas:state.pose===6&&!bellyCanvas.hidden?bellyCanvas:state.moving&&!walkCanvas.hidden?walkCanvas:sprite;
@@ -1992,6 +2030,296 @@ function createOutingFeature() {
     takeSnapshot,captureHomeMoment,openLayerSheet,closeLayerSheet,layerPointerDown,layerPointerMove,layerPointerEnd,
     resetTransform,pointerDown,pointerMove,pointerEnd,clearGesture,suspendCamera,render,sizeStage};
 }
+// All 60 adopted images share one scene transform. This controller owns only the game.
+function createFrisbeeFeature(){
+ const meta=JSON.parse($('frisbeeData').textContent),entry=$('frisbeeEnter');
+ const field=document.createElement('div');field.className='frisbee-field';field.hidden=true;
+ const canvas=document.createElement('canvas');canvas.id='frisbeeCanvas';canvas.className='frisbee-canvas';
+ canvas.width=meta.width;canvas.height=meta.height;canvas.setAttribute('role','img');canvas.setAttribute('aria-label','熊猫吐着舌头，等你扔飞盘');
+ const ctx=canvas.getContext('2d');
+ const discButton=document.createElement('button');discButton.type='button';discButton.id='frisbeeThrow';discButton.className='frisbee-throw';
+ discButton.setAttribute('aria-label','扔出飞盘，也可以滑动飞盘扔出');discButton.hidden=true;
+ const discImage=document.createElement('img');discImage.alt='';discImage.draggable=false;discButton.append(discImage);field.append(canvas,discButton);scene.append(field);
+ const retrieveButton=document.createElement('button');retrieveButton.type='button';retrieveButton.id='frisbeeRetrieve';
+ retrieveButton.className='frisbee-retrieve';retrieveButton.setAttribute('aria-label','拿回熊猫叼着的飞盘');retrieveButton.hidden=true;field.append(retrieveButton);
+ const game={active:false,phase:'off',token:0,raf:null,lastTime:null,index:-1,elapsed:0,rate:1,round:0,
+  anchor:null,geometry:null,discRect:null,drag:null,offset:{x:0,y:0},prop:{x:0,y:0,scale:1},throwStart:null,
+  suppressedUntil:0,waitingPage:null,restore:null};
+ const cache=new Map(),loads=new Map();let readyImage=null,propImage=null,landedImage=null,launchImage=null,stillPromise=null;
+ const handoffIndex=meta.frames.findIndex(frame=>frame.id==='R30');
+ function frameID(){return game.phase==='throwing'?'D00':game.phase==='awaiting-retrieve'?'R30-wait':game.index<0?'R33':meta.frames[game.index].id;}
+
+ function mark(){
+  scene.dataset.frisbee=game.phase;scene.dataset.frisbeeFrame=frameID();
+  scene.dataset.frisbeeRate=String(game.rate);scene.dataset.frisbeeRound=String(game.round);
+  field.setAttribute('aria-busy',String(game.phase==='loading'||game.waitingPage!==null));
+ }
+ function image(src){
+  return new Promise((resolve,reject)=>{
+   const img=new Image();let timer;
+   const finish=(error)=>{clearTimeout(timer);img.onload=img.onerror=null;error?reject(error):resolve(img);};
+   img.onload=()=>finish();img.onerror=()=>finish(Error('Frisbee image failed: '+src));
+   timer=setTimeout(()=>finish(Error('Frisbee image timed out: '+src)),15000);img.src=src;
+  });
+ }
+ function trimCache(){
+  const p=game.index<0?0:meta.frames[game.index].page;
+  const keep=new Set(game.phase==='ready'?[0,1]:[p-1,p,p+1]);
+  for(const key of cache.keys())if(!keep.has(key))cache.delete(key);
+ }
+ function loadPage(page){
+  if(cache.has(page))return Promise.resolve(cache.get(page));
+  if(loads.has(page))return loads.get(page);
+  const spec=meta.pages[page];
+  const promise=image(spec.src).then(img=>{
+   if(img.naturalWidth!==spec.width||img.naturalHeight!==spec.height)throw Error('Invalid frisbee atlas dimensions');
+   cache.set(page,img);trimCache();return img;
+  }).finally(()=>loads.delete(page));
+  loads.set(page,promise);return promise;
+ }
+ function loadStills(){
+  if(!stillPromise)stillPromise=Promise.all([image(meta.ready),image(meta.disc),image(meta.landed),image(meta.launch.src)]).then(([dog,disc,landed,launch])=>{
+   readyImage=dog;propImage=disc;landedImage=landed;launchImage=launch;discImage.src=disc.src;
+  }).catch(error=>{stillPromise=null;throw error;});
+  return stillPromise;
+ }
+ function prefetch(index){
+  const next=meta.frames[index+1]?.page;
+  if(next!==undefined)loadPage(next).catch(()=>{});
+ }
+ function setProp(x=0,y=0,scale=1,opacity=1){
+  game.prop={x,y,scale,opacity};discButton.style.opacity=String(opacity);
+  if(game.geometry)discButton.style.transform=`translate(${x*game.geometry.unit}px,${y*game.geometry.unit}px) scale(${scale})`;
+ }
+ function layout(){
+  if(!game.active||!game.anchor)return;
+  const box=scene.getBoundingClientRect();if(!box.width||!box.height)return;
+  const bounds=meta.sceneBounds,margin=2;
+  const unit=Math.min(box.width/meta.sourceWidth,(box.width-margin*2)/(bounds.right-bounds.left));
+  const low=margin-bounds.left*unit,high=box.width-margin-bounds.right*unit;
+  const left=Math.max(low,Math.min(high,game.anchor.x*box.width-meta.foot.x*unit));
+  const top=game.anchor.y*box.height-meta.foot.y*unit;
+  game.geometry={left,top,unit,width:meta.sourceWidth*unit,height:meta.sourceHeight*unit};
+  Object.assign(field.style,{left:left+'px',top:top+'px',width:game.geometry.width+'px',height:game.geometry.height+'px'});
+  // The throwable prop belongs to the foreground, independently of the handoff frame.
+  const r=game.discRect={width:meta.discRect.width,height:meta.discRect.height,
+   x:(box.width*.5-left)/unit-meta.discRect.width/2,
+   y:(box.height*.55-top)/unit+meta.discRect.height/2};
+  Object.assign(discButton.style,{left:r.x*unit+'px',top:r.y*unit+'px',width:r.width*unit+'px',height:r.height*unit+'px'});
+  const held=meta.heldDiscRect;
+  Object.assign(retrieveButton.style,{left:held.x*unit+'px',top:held.y*unit+'px',width:held.width*unit+'px',height:held.height*unit+'px'});
+  setProp(game.prop.x,game.prop.y,game.prop.scale,game.prop.opacity);
+ }
+ function canPlayHere(){return state.viewScene==='hall'||state.viewScene==='garden';}
+ function sync(){
+  entry.disabled=game.active||!state.walkReady||state.sceneLoading||(canPlayHere()&&(!isHere()||state.moving||isEntering()||bellyActive()));
+  entry.setAttribute('aria-hidden',String(game.active));entry.tabIndex=game.active?-1:0;
+  if(!game.active){$('rest').textContent='趴一会儿';$('come').textContent='叫过来';return;}
+  actor.hidden=game.phase!=='loading';
+  $('paw').textContent='不玩啦';$('paw').classList.remove('sit-up');$('paw').disabled=false;
+  $('rest').textContent=(game.phase==='awaiting-retrieve'||game.phase==='handoff')?'拿回来':'扔出去';
+  $('rest').disabled=!['ready','awaiting-retrieve'].includes(game.phase)||state.sceneLoading;
+  $('rest').setAttribute('aria-pressed','false');
+  $('come').textContent='夸熊猫';$('come').disabled=game.phase==='loading'||state.sceneLoading;
+  $('playHint').textContent=game.phase==='loading'?'飞盘准备中，可以随时按「不玩啦」返回':game.phase==='ready'?'滑动或点一下飞盘，也可以按「扔出去」':game.phase==='awaiting-retrieve'?'点一下熊猫叼着的飞盘，或按「拿回来」':game.phase==='handoff'?'正在拿回飞盘':'熊猫去接飞盘啦，按「夸熊猫」为它加油';
+  scene.setAttribute('aria-label',places[state.viewScene].name+'，正在和熊猫玩飞盘');
+  discButton.disabled=game.phase!=='ready'||state.sceneLoading;
+  retrieveButton.disabled=game.phase!=='awaiting-retrieve'||state.sceneLoading;
+ }
+ function cancelTick(){if(game.raf!==null)cancelAnimationFrame(game.raf);game.raf=null;game.lastTime=null;}
+ function schedule(){if(game.raf===null&&game.active&&['throwing','flight','handoff'].includes(game.phase))game.raf=requestAnimationFrame(tick);}
+ function clearDrag(){
+  const drag=game.drag;game.drag=null;game.offset={x:0,y:0};
+  if(drag&&discButton.hasPointerCapture?.(drag.id))try{discButton.releasePointerCapture(drag.id);}catch(_error){}
+  if(game.phase==='ready')setProp();
+ }
+ function canvasFrame(width=meta.width,sourceOffsetX=0){
+  if(canvas.width!==width)canvas.width=width;
+  canvas.style.position='relative';canvas.style.width=width/meta.width*100+'%';
+  canvas.style.left=sourceOffsetX/meta.sourceWidth*100+'%';
+ }
+ function drawLaunch(){
+  canvasFrame(meta.launch.width,meta.launch.sourceOffsetX);
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.drawImage(launchImage,0,0);
+  canvas.setAttribute('aria-label','熊猫转身迈步去追飞盘');
+ }
+ function drawCurrent(){
+  if(game.phase==='throwing'){drawLaunch();mark();return;}
+  canvasFrame();
+  if(game.phase==='awaiting-retrieve'){
+   ctx.clearRect(0,0,meta.width,meta.height);ctx.drawImage(landedImage,0,0);
+   canvas.setAttribute('aria-label','熊猫四脚落地，叼着飞盘等你拿回来');mark();return;
+  }
+  if(game.index<0){if(!readyImage)return;ctx.clearRect(0,0,meta.width,meta.height);ctx.drawImage(readyImage,0,0);return;}
+  const frame=meta.frames[game.index],atlas=cache.get(frame.page);if(!atlas)return;
+  ctx.clearRect(0,0,meta.width,meta.height);
+  ctx.drawImage(atlas,frame.x,frame.y,meta.width,meta.height,0,0,meta.width,meta.height);
+  canvas.setAttribute('aria-label',frame.phase==='handoff'?'熊猫送回飞盘，手从下方接过':'熊猫'+(frame.phase==='outbound'?'跑去追飞盘':frame.phase==='catch'?'跳起接飞盘':frame.phase==='turn'?'落地转身':'叼着飞盘跑回来'));
+  mark();prefetch(game.index);
+ }
+ function becomeReady(){
+  cancelTick();game.phase='ready';game.index=-1;game.elapsed=0;game.rate=1;game.waitingPage=null;
+  field.hidden=false;discButton.hidden=false;retrieveButton.hidden=true;setProp();layout();drawCurrent();mark();syncPresence();trimCache();
+  canvas.setAttribute('aria-label','熊猫吐着舌头，等你扔飞盘');
+  loadPage(0).catch(()=>{});
+ }
+ function waitForRetrieval(){
+  cancelTick();game.phase='awaiting-retrieve';game.index=handoffIndex;game.elapsed=0;game.waitingPage=null;
+  discButton.hidden=true;retrieveButton.hidden=false;layout();drawCurrent();syncPresence();trimCache();
+ }
+ function retrieve(source){
+  if(!game.active||game.phase!=='awaiting-retrieve'||state.sceneLoading)return;
+  retrieveButton.dataset.lastTrigger=source;retrieveButton.hidden=true;game.phase='handoff';game.elapsed=0;game.lastTime=null;
+  drawCurrent();mark();syncPresence();schedule();
+ }
+ function primaryAction(source){if(game.phase==='awaiting-retrieve')retrieve(source);else throwDisc(source);}
+ function recover(error){
+  console.error('Frisbee playback failed',error);
+  if(readyImage&&propImage){becomeReady();note('飞盘画面没有载入，请再扔一次');}
+  else{exit(false);note('飞盘没有载入，请再点一次小飞盘');}
+ }
+ function buffer(page){
+  if(game.waitingPage===page)return;
+  const token=game.token;game.waitingPage=page;mark();
+  loadPage(page).then(()=>{
+   if(!game.active||token!==game.token)return;
+   game.waitingPage=null;game.lastTime=null;mark();schedule();
+  }).catch(error=>{if(game.active&&token===game.token)recover(error);});
+ }
+ async function enter(){
+  if(game.active||entry.disabled)return;
+  if(!canPlayHere()){
+   const message=$('sceneNote');clearTimeout(sceneNoteTimer);
+   message.textContent='地方太小啦';message.hidden=false;
+   sceneNoteTimer=setTimeout(()=>{sceneNoteTimer=null;note('');},1500);
+   return;
+  }
+  closePlaces();stop();cancelBelly();resetRest();setPose(0);
+  game.restore={x:state.x,y:state.y};
+  const sceneBox=scene.getBoundingClientRect(),box=actor.getBoundingClientRect();
+  game.anchor={x:(box.left-sceneBox.left+box.width*meta.idleFoot.x)/sceneBox.width,
+   y:(box.top-sceneBox.top+box.height*meta.idleFoot.y)/sceneBox.height};
+  game.active=true;game.phase='loading';game.index=-1;game.round=0;game.rate=1;
+  const token=++game.token;clearTimeout(state.sleepTimer);state.sleepTimer=null;state.autoLieSince=null;
+  mark();syncPresence();
+  try{
+   await Promise.all([loadStills(),loadPage(0)]);
+   if(!game.active||token!==game.token)return;
+   becomeReady();loadPage(1).catch(()=>{});$('rest').focus({preventScroll:true});
+  }catch(error){if(game.active&&token===game.token)recover(error);}
+ }
+ function exit(announce=true){
+  if(!game.active)return;
+  ++game.token;cancelTick();clearDrag();game.active=false;game.phase='off';game.index=-1;game.waitingPage=null;
+  field.hidden=true;discButton.hidden=true;retrieveButton.hidden=true;
+  if(game.restore){state.x=game.restore.x;state.y=game.restore.y;}
+  game.restore=null;state.lastPageActivity=Date.now();state.autoLieSince=null;
+  stop();cancelBelly();resetRest();setPose(0);mark();syncPresence();savePlace();
+  if(announce){entry.focus({preventScroll:true});note('休息一下，下次再玩');}
+ }
+ function throwDisc(source){
+  if(!game.active||game.phase!=='ready'||state.sceneLoading)return;
+  const current={...game.prop};clearDrag();
+  game.phase='throwing';game.round++;game.rate=1;game.elapsed=0;game.index=-1;
+  game.throwStart=current;game.lastTime=null;setProp(current.x,current.y,current.scale);
+  discButton.dataset.lastTrigger=source;drawCurrent();mark();syncPresence();schedule();
+ }
+ function tick(time){
+  game.raf=null;if(!game.active)return;
+  const dt=game.lastTime===null?0:Math.min(100,Math.max(0,time-game.lastTime));game.lastTime=time;
+  if(document.hidden){game.lastTime=null;schedule();return;}
+  if(game.phase==='throwing'){
+   if(game.waitingPage===null)game.elapsed+=dt;
+   if(game.elapsed>=meta.throwDuration&&!cache.has(meta.frames[0].page)){
+    game.elapsed=meta.throwDuration;buffer(meta.frames[0].page);
+   }
+   const t=Math.min(1,game.elapsed/meta.throwDuration),ease=1-Math.pow(1-t,2),r=game.discRect;
+   const tx=meta.throwTarget.x-r.x-r.width/2,ty=meta.throwTarget.y-r.y-r.height/2,ts=meta.throwTarget.width/r.width;
+   setProp(game.throwStart.x+(tx-game.throwStart.x)*ease,game.throwStart.y+(ty-game.throwStart.y)*ease,1+(ts-1)*ease);
+   drawCurrent();
+   if(t===1&&cache.has(meta.frames[0].page)){game.phase='flight';game.index=0;game.elapsed=0;game.lastTime=null;discButton.hidden=true;drawCurrent();mark();sync();}
+  }else if(game.phase==='flight'||game.phase==='handoff'){
+   const current=meta.frames[game.index];
+   if(!cache.has(current.page)){buffer(current.page);schedule();return;}
+   if(game.waitingPage===null)game.elapsed+=dt*(current.phase==='handoff'?1:game.rate);
+   while(game.elapsed>=meta.frames[game.index].duration){
+    const next=meta.frames[game.index+1];
+    if(!next){becomeReady();note('熊猫把飞盘送回来啦');return;}
+    if(game.phase==='flight'&&next.id==='R30'){waitForRetrieval();return;}
+    if(!cache.has(next.page)){game.elapsed=meta.frames[game.index].duration;buffer(next.page);break;}
+    game.elapsed-=meta.frames[game.index].duration;game.index++;
+    drawCurrent();trimCache();
+   }
+  }
+  schedule();
+ }
+ function praiseHeart(){
+  const g=game.geometry,box=scene.getBoundingClientRect();
+  if(!g||!box.width||!box.height){heart();return;}
+  const width=canvas.width,height=canvas.height,pixels=ctx.getImageData(0,0,width,height).data;
+  let left=width,right=-1,top=height,bottom=-1;
+  for(let y=0;y<height;y++)for(let x=0;x<width;x++){
+   if(pixels[(y*width+x)*4+3]<16)continue;
+   left=Math.min(left,x);right=Math.max(right,x);top=Math.min(top,y);bottom=Math.max(bottom,y);
+  }
+  if(right<left){heart();return;}
+  const offset=game.phase==='throwing'?meta.launch.sourceOffsetX:0;
+  const x=g.left+offset*g.unit+(left+right)/2/meta.width*g.width;
+  const y=g.top+(top+(bottom-top)*.2)/height*g.height;
+  heart(Math.max(2,Math.min(98,x/box.width*100)),Math.max(4,Math.min(96,y/box.height*100)));
+ }
+ function praise(){
+  if(!game.active||game.phase==='loading'||state.sceneLoading)return;
+  praiseHeart();
+  if((game.phase==='throwing'||game.phase==='flight')&&meta.frames[game.index]?.phase!=='handoff'){
+   game.rate=meta.praisedRate;mark();note('熊猫跑得更快啦！');
+  }else note('熊猫真棒！');
+ }
+ function paintCapture(context,ratio){
+  if(!game.active||field.hidden||!game.geometry)return false;
+  const g=game.geometry;context.save();context.scale(ratio,ratio);
+  const offset=game.phase==='throwing'?meta.launch.sourceOffsetX:0;
+  context.drawImage(canvas,g.left+offset*g.unit,g.top,canvas.width/meta.width*g.width,g.height);
+  if(!discButton.hidden&&propImage){
+   const r=game.discRect,p=game.prop,w=r.width*p.scale,h=r.height*p.scale;
+   context.globalAlpha=p.opacity;
+   context.drawImage(propImage,g.left+(r.x+r.width/2+p.x-w/2)*g.unit,g.top+(r.y+r.height/2+p.y-h/2)*g.unit,w*g.unit,h*g.unit);
+  }
+  context.restore();return true;
+ }
+ entry.addEventListener('click',enter);
+ retrieveButton.addEventListener('click',event=>{event.stopPropagation();retrieve('disc');});
+ discButton.addEventListener('click',event=>{event.stopPropagation();if(performance.now()>=game.suppressedUntil)throwDisc('disc');});
+ discButton.addEventListener('pointerdown',event=>{
+  if(game.phase!=='ready'||discButton.disabled||event.isPrimary===false||event.button!==0)return;
+  event.stopPropagation();game.drag={id:event.pointerId,x:event.clientX,y:event.clientY};
+  discButton.setPointerCapture?.(event.pointerId);
+ });
+ discButton.addEventListener('pointermove',event=>{
+  const drag=game.drag;if(!drag||event.pointerId!==drag.id||!game.geometry)return;
+  event.stopPropagation();event.preventDefault();
+  game.offset={x:(event.clientX-drag.x)/game.geometry.unit,y:(event.clientY-drag.y)/game.geometry.unit};setProp(game.offset.x,game.offset.y);
+ });
+ discButton.addEventListener('pointerup',event=>{
+  const drag=game.drag;if(!drag||event.pointerId!==drag.id)return;
+  event.stopPropagation();
+  const distance=Math.hypot(event.clientX-drag.x,event.clientY-drag.y);
+  if(distance>=24){
+   // Read the final pointer position too: a fast flick can end before pointermove.
+   setProp((event.clientX-drag.x)/game.geometry.unit,(event.clientY-drag.y)/game.geometry.unit);
+   game.suppressedUntil=performance.now()+450;throwDisc('swipe');
+  }else clearDrag();
+ });
+ discButton.addEventListener('pointercancel',clearDrag);discButton.addEventListener('lostpointercapture',()=>{if(game.drag)clearDrag();});
+ window.addEventListener('blur',clearDrag);
+ document.addEventListener('visibilitychange',()=>{game.lastTime=null;});
+ if(typeof ResizeObserver!=='undefined')new ResizeObserver(layout).observe(scene);else window.addEventListener('resize',layout);
+ mark();
+ return {enter,exit,sync,throwDisc,primaryAction,praise,paintCapture,get active(){return game.active;},get frame(){return frameID();}};
+}
+
+frisbeeFeature=createFrisbeeFeature();
 const outingFeature=createOutingFeature();
 
 setupPlaces();setupAutoSleep();actor.hidden=true;document.querySelectorAll('.controls button').forEach(b=>b.disabled=true);$('previewWarning').hidden=true;prepareAlphaMask().catch(error=>{console.error('Panda initialization failed',error);note('角色暂时没有载入，请刷新页面重试');});
