@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#e4e9eb">
 <title>熊猫的小家</title>
 <style>
-:root{color-scheme:light;--ink:#36454e;--paper:#e4e9eb;--blue:#466479;--line:#bac8cf;--atlas:url('panda-assets/poses-59f6c10f6bb5.png');--matte:url('panda-assets/pose-mask-cca5700aff0a.png')}
+:root{color-scheme:light;--ink:#36454e;--paper:#e4e9eb;--blue:#466479;--line:#bac8cf;--atlas:url('panda-assets/poses-5551f1cb8839.webp');--matte:url('panda-assets/pose-mask-83155cadcf1b.webp')}
 *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;font-size:16px;line-height:1.5}button,a{-webkit-tap-highlight-color:transparent}button{font:inherit;color:inherit;cursor:pointer}button:focus-visible,a:focus-visible{outline:3px solid #476b88;outline-offset:4px}button:disabled{opacity:.45;cursor:default}[hidden]{display:none!important}
 .app{max-width:590px;margin:auto;padding:env(safe-area-inset-top) 14px max(16px,env(safe-area-inset-bottom));min-height:100vh;min-height:100svh;display:flex;flex-direction:column}.top{min-height:77px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 3px}.title{font-family:Georgia,"Songti SC","STSong",serif;font-size:25px;font-weight:600;letter-spacing:.05em;margin:0}.top-actions{display:flex;gap:7px}.quiet{background:transparent;border:1px solid var(--line);border-radius:50%;min-width:44px;min-height:44px;display:grid;place-items:center}.quiet svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .scene-frame{--scene-button-background:#e9ece4df;--scene-button-active-background:#dce6d7df;--scene-button-rest-background:#797D78eb;--scene-background-overflow:58px;position:relative;isolation:isolate;overflow:hidden;display:grid;flex:1 0 auto;padding-bottom:14px;border-radius:26px;background:#b6b9b3;box-shadow:0 10px 32px #4e5e6321}.scene{position:relative;isolation:isolate;overflow:hidden;width:100%;aspect-ratio:2/3;align-self:stretch;max-height:none;min-height:330px;touch-action:manipulation}.room{position:absolute;inset:0;width:100%;height:calc(100% + var(--scene-background-overflow));object-fit:cover;object-position:center;pointer-events:none;user-select:none}.corner-label{position:absolute;left:18px;top:16px;font-size:14px;color:#405055;background:#edf0e3df;padding:5px 11px;border-radius:20px;pointer-events:none}.actor{position:absolute;left:40%;top:75%;width:57%;aspect-ratio:1/1.1;transform:translate(-50%,-88%);border:0;padding:0;background:none;z-index:2;touch-action:manipulation}.sprite{display:block;position:absolute;inset:0;background-image:var(--atlas);background-repeat:no-repeat;background-size:300% 186.1818%;background-position:0 0;-webkit-mask-image:var(--matte);mask-image:var(--matte);mask-mode:luminance;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:300% 186.1818%;mask-size:300% 186.1818%;-webkit-mask-position:0 0;mask-position:0 0;transform-origin:50% 92%;animation:breathe 4s ease-in-out infinite;filter:drop-shadow(0 5px 2px #42342128)}
@@ -129,19 +129,19 @@
 @media(max-width:390px){.outing-overlay{padding-left:8px;padding-right:8px}.outing-panel{padding:13px}.outing-pose-row{gap:5px}.outing-fine-row{gap:4px}.outing-fine-row button{padding:6px 7px}.outing-sheet{padding:13px}.outing-header h2{font-size:21px}}
 @media(min-height:760px){.outing-overlay{padding-top:max(24px,env(safe-area-inset-top))}}
 
-:root{--paw-first:url('panda-assets/paw-first-99671f275cf3.png');--paw-other:url('panda-assets/paw-other-aedb76f666bd.png')}
+:root{--paw-first:url('panda-assets/paw-first-02307ffc1731.webp');--paw-other:url('panda-assets/paw-other-75c3d9093250.webp')}
 .actor.handshaking:not(.paw-other) .sprite{background-image:var(--paw-first);background-size:100% 100%!important;background-position:0 0!important;mask-image:none;-webkit-mask-image:none}
 .actor.paw-other .sprite{top:2.043906131718%;bottom:-2.043906131718%;background-image:var(--paw-other);background-size:100% 100%!important;background-position:0 0!important;mask-image:none;-webkit-mask-image:none}
 .actor.handshaking .sprite{filter:none}
 .prone-wag-canvas{display:block;position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none}.prone-wag-canvas[hidden]{display:none}.prone-tail-wag .sprite{animation:none}
-:root{--side-lying:url('panda-assets/side-lying-86ffbdae4c82.png')}
+:root{--side-lying:url('panda-assets/side-lying-d472ae24205e.webp')}
 .actor.side-lying .sprite{background-image:var(--side-lying);background-size:100% 100%!important;background-position:0 0!important;mask-image:none;-webkit-mask-image:none}
-:root{--side-head-raised:url('panda-assets/side-head-raised-a5b88ca0b1bb.png')}
+:root{--side-head-raised:url('panda-assets/side-head-raised-5b3adeb83940.webp')}
 .actor.side-lying.side-head-raised .sprite{background-image:var(--side-head-raised)}
 .actor.custom-rest .sprite{background-image:var(--rest-pose-image);background-size:100% 100%!important;background-position:0 0!important;mask-image:none;-webkit-mask-image:none;filter:none}
 .side-prone-tail-wag .sprite{animation:none}
 .actor.idle-rest .sprite{background-image:var(--idle-rest);background-size:100% 100%!important;background-position:0 0!important;mask-image:none;-webkit-mask-image:none}
-:root{--idle-rest:url("panda-assets/idle-rest-87062efd9f25.png")}
+:root{--idle-rest:url("panda-assets/idle-rest-d1df6ee343d0.webp")}
 
 /* Keep the original 44px grid slot even while its entry button is invisible. */
 .frisbee-entry{width:44px;height:44px;padding:0;border:0;background:none;align-self:center;line-height:0;touch-action:manipulation}
@@ -160,6 +160,7 @@
 #helpOverlay .help{display:flex;flex-direction:column;max-height:100%;overflow:hidden;padding:0}
 #helpOverlay .panel-head{flex:none;margin:0;padding:18px 18px 14px;background:#e9eeed;border-bottom:1px solid #bac8cf}
 #helpOverlay .help-content{min-height:0;overflow-y:auto;padding:0 18px 18px;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+.sit-lie-canvas{display:block;position:absolute;left:-34.594488162301%;top:-17.026269374978%;width:170.503144875048%;height:133.310595353509%;pointer-events:none;filter:drop-shadow(0 5px 2px #42342128)}.sit-lie-canvas[hidden]{display:none}.sit-side-lying .sprite{animation:none}
 </style>
 </head>
 <body>
@@ -167,14 +168,14 @@
 <header class="top"><h1 class="title">熊猫的小家</h1><div class="top-actions"><button class="quiet" id="openAlbum" aria-label="打开相册" title="相册"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="8" cy="9" r="1.5"/><path d="m4 17 5-5 4 4 3-3 4 4"/></svg></button><button class="quiet" id="openHelp" aria-label="使用说明" title="使用说明"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.4 9a2.7 2.7 0 0 1 5.2 1c0 2-2.6 2.2-2.6 4M12 17h.01"/></svg></button></div></header>
 <div class="preview-warning" id="previewWarning">如果下方按钮没有反应，请用支持 JavaScript 的本地 HTML 查看器打开这个文件。</div>
 <div class="scene-frame" id="sceneFrame">
-<img class="room" id="room" src="panda-assets/living-62909ebd172f.png" alt="有沙发、书架和蓝色狗窝的客厅" draggable="false">
+<img class="room" id="room" src="panda-assets/living-ab8e0525e3a0.webp" alt="有沙发、书架和蓝色狗窝的客厅" draggable="false">
 <section class="scene" id="scene" aria-label="熊猫的插画小家，点地板可以让它走过去">
 <button class="corner-label" id="sceneToggle" type="button" aria-expanded="false" aria-controls="sceneMenu" aria-label="在客厅，切换场景"><span id="sceneLabel">在客厅</span><span aria-hidden="true">▾</span></button>
 <div class="scene-menu" id="sceneMenu" role="group" aria-label="选择位置" hidden><div class="place-options" id="placeOptions"></div><div class="outing-entry"><button id="outingOpen" class="place-option" type="button"><span>出门</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5 9.5 3h5L16 5h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"/><circle cx="12" cy="12.5" r="4"/></svg></button></div></div><div class="scene-photo-actions"><button class="photo-in-scene" id="takePhoto" type="button" aria-label="立即截下当前场景">截图</button><button class="photo-in-scene" id="collageToggle" type="button" aria-expanded="false" aria-controls="photoMenu">合照 ▾</button></div><div id="photoMenu" class="photo-menu" role="group" aria-label="选择合照背景" hidden><button id="photoOutingOpen" class="place-option" type="button">出门合照</button><button id="roomPhotoOpen" class="place-option" type="button">在小家合照</button></div>
-<button class="actor" id="panda" aria-label="摸一摸" title="摸一摸"><span class="sprite" id="sprite"></span><canvas class="walk-canvas" id="walkCanvas" aria-hidden="true" hidden></canvas><canvas class="belly-canvas" id="bellyCanvas" aria-hidden="true" hidden></canvas><canvas class="idle-wag-canvas" id="idleWagCanvas" aria-hidden="true" hidden></canvas><canvas class="prone-wag-canvas" id="proneWagCanvas" aria-hidden="true" hidden></canvas><canvas class="prone-wag-canvas" id="sideProneWagCanvas" aria-hidden="true" hidden></canvas></button>
+<button class="actor" id="panda" aria-label="摸一摸" title="摸一摸"><span class="sprite" id="sprite"></span><canvas class="sit-lie-canvas" id="sitLieCanvas" aria-hidden="true" hidden></canvas><canvas class="walk-canvas" id="walkCanvas" aria-hidden="true" hidden></canvas><canvas class="belly-canvas" id="bellyCanvas" aria-hidden="true" hidden></canvas><canvas class="idle-wag-canvas" id="idleWagCanvas" aria-hidden="true" hidden></canvas><canvas class="prone-wag-canvas" id="proneWagCanvas" aria-hidden="true" hidden></canvas><canvas class="prone-wag-canvas" id="sideProneWagCanvas" aria-hidden="true" hidden></canvas></button>
 <span class="scene-note" id="sceneNote" aria-live="polite" hidden>熊猫在这里</span>
 </section>
-<nav class="controls" aria-label="和熊猫玩"><button class="action" id="paw">握握手</button><button class="action" id="rest" aria-pressed="false">趴一会儿</button><button class="action" id="come">叫过来</button><button type="button" class="frisbee-entry" id="frisbeeEnter" aria-label="玩飞盘" aria-hidden="false"><img class="frisbee-icon" src="panda-assets/frisbee-3e49f54d61a6.png" width="44" height="44" alt="" draggable="false"></button></nav>
+<nav class="controls" aria-label="和熊猫玩"><button class="action" id="paw">握握手</button><button class="action" id="rest" aria-pressed="false">趴一会儿</button><button class="action" id="come">叫过来</button><button type="button" class="frisbee-entry" id="frisbeeEnter" aria-label="玩飞盘" aria-hidden="false"><img class="frisbee-icon" src="panda-assets/frisbee-01827773adb9.webp" width="44" height="44" alt="" draggable="false"></button></nav>
 </div>
 <p class="hint" id="playHint">用手指点一点熊猫，也可以点地板叫它过去</p>
 </main>
@@ -299,14 +300,15 @@
   </div>
 </div>
 
-<script id="bellyData" type="application/json">{"src":"panda-assets/belly-transition-63c205981bcf.png","cellSize":1280,"cols":4,"sourceFrames":[1,2,3,4,5,6,8,9,12],"restFrame":12,"down":[{"sourceFrame":2,"ms":85},{"sourceFrame":3,"ms":90},{"sourceFrame":5,"ms":110},{"sourceFrame":6,"ms":100},{"sourceFrame":8,"ms":90},{"sourceFrame":9,"ms":75},{"sourceFrame":12,"ms":65}],"up":[{"sourceFrame":9,"ms":75},{"sourceFrame":8,"ms":85},{"sourceFrame":6,"ms":100},{"sourceFrame":5,"ms":115},{"sourceFrame":4,"ms":110},{"sourceFrame":1,"ms":90}],"restSrc":"panda-assets/belly-rest-6ac65f0a32b5.png","restSize":1536}</script>
-<script id="sideProneBellyData" type="application/json">{"src":"panda-assets/side-prone-belly-673bfe8e4fdd.png","cellSize":1536,"cols":2,"rows":2,"frames":[0,1,2,3],"frameMs":100}</script>
-<script id="bellyWagData" type="application/json">{"cellSize":1536,"cols":3,"rows":3,"frames":[1,2,3,5,6,7,8],"loopFrames":[2,3,5,6,7,8],"cycles":3,"frameMs":{"2":70,"3":60,"5":70,"6":60,"7":60,"8":60},"startHoldMs":330,"endHoldMs":480,"src":"panda-assets/belly-wag-61b4dc4c3202.png"}</script>
-<script id="sceneData" type="application/json">{"hall":"panda-assets/hall-5137c9b5fb57.jpg","garden":"panda-assets/garden-142785b34ac2.jpg","foyer":"panda-assets/foyer-521f6297ab81.png"}</script>
-<script id="walkLeftData" type="application/json">{"src":"panda-assets/walk-left-dc6c4cd6ac59.png"}</script>
-<script id="walkRightData" type="application/json">{"src":"panda-assets/walk-right-88c2390ce778.png"}</script>
-<script id="proneWagData" type="application/json">{"cellWidth":550,"cellHeight":450,"cols":3,"rows":2,"count":5,"offsetX":0,"anchorWidth":550,"restFrame":0,"loopFrames":[1,2,3,4],"cycles":3,"loopDurations":[[50,40,50,50],[40,50,50,40],[50,50,40,50]],"finalDown2Ms":150,"frames":["静态","抬起1","抬起2","放下1","放下2"],"src":"panda-assets/prone-wag-b93de1ccbb00.png"}</script>
-<script id="idleWagData" type="application/json">{"cellWidth":1280,"cellHeight":1100,"cols":3,"rows":3,"count":9,"offsetX":192,"anchorWidth":1024,"restFrame":0,"entryFrames":[1],"loopFrames":[2,3,4,5,6,7],"exitFrames":[8,0],"frameMs":[70,70,60,60,70,60,60,60,80],"cycles":[3,3],"speedRange":[0.85,1.15],"frames":[{"index":0,"name":"rest"},{"index":1,"name":"entry"},{"index":2,"name":"up-low"},{"index":3,"name":"up-middle"},{"index":4,"name":"turn-high"},{"index":5,"name":"down-high"},{"index":6,"name":"down-middle"},{"index":7,"name":"down-low"},{"index":8,"name":"exit"}],"src":"panda-assets/idle-wag-d8ae6729c772.png"}</script>
+<script id="bellyData" type="application/json">{"src":"panda-assets/belly-transition-056107864055.webp","cellSize":1280,"cols":4,"sourceFrames":[1,2,3,4,5,6,8,9,12],"restFrame":12,"down":[{"sourceFrame":2,"ms":85},{"sourceFrame":3,"ms":90},{"sourceFrame":5,"ms":110},{"sourceFrame":6,"ms":100},{"sourceFrame":8,"ms":90},{"sourceFrame":9,"ms":75},{"sourceFrame":12,"ms":65}],"up":[{"sourceFrame":9,"ms":75},{"sourceFrame":8,"ms":85},{"sourceFrame":6,"ms":100},{"sourceFrame":5,"ms":115},{"sourceFrame":4,"ms":110},{"sourceFrame":1,"ms":90}],"restSrc":"panda-assets/belly-rest-90cf4615a791.webp","restSize":1536,"riseOverrides":{"src":"panda-assets/belly-rise-0f9c42a37593.webp","cellSize":1280,"cols":2,"sourceFrames":[9,8]}}</script>
+<script id="sitLieData" type="application/json">{"cellWidth":1524,"cellHeight":1280,"cols":4,"rows":2,"frames":[0,1,2,3,4,5,6],"sourceFrames":[1,2,3,4,5,7,9],"frameMs":[130,130,130,130,130,130,130],"raisedFrame":5,"restFrame":6,"anchorWidth":1024,"anchorHeight":1100,"scale":1.1456379288192213,"offsetX":-354.2475587819606,"offsetY":-187.288963124759,"visibleBounds":{"left":59,"right":1438},"src":"panda-assets/sit-side-lying-196d70bf5d37.webp"}</script>
+<script id="sideProneBellyData" type="application/json">{"src":"panda-assets/side-prone-belly-7a209305f3cf.webp","cellWidth":1448,"cellHeight":1086,"cols":3,"rows":3,"frames":[0,1,2,3,4,5,6,7,8],"frameMs":[130,130,130,130,130,130,76.47058823529412,76.47058823529412,76.47058823529412],"destination":{"x":0,"y":384,"width":1536,"height":1152}}</script>
+<script id="bellyWagData" type="application/json">{"cellSize":1536,"cols":3,"rows":3,"frames":[1,2,3,5,6,7,8],"loopFrames":[2,3,5,6,7,8],"cycles":3,"frameMs":{"2":70,"3":60,"5":70,"6":60,"7":60,"8":60},"startHoldMs":330,"endHoldMs":480,"src":"panda-assets/belly-wag-ecb7677a1cd7.webp"}</script>
+<script id="sceneData" type="application/json">{"hall":"panda-assets/hall-b2dfd9977dfa.webp","garden":"panda-assets/garden-b025bfe25719.webp","foyer":"panda-assets/foyer-6e44f8e05f33.webp"}</script>
+<script id="walkLeftData" type="application/json">{"src":"panda-assets/walk-left-a66ee3224c24.webp"}</script>
+<script id="walkRightData" type="application/json">{"src":"panda-assets/walk-right-20587ec2f801.webp"}</script>
+<script id="proneWagData" type="application/json">{"cellWidth":550,"cellHeight":450,"cols":3,"rows":2,"count":5,"offsetX":0,"anchorWidth":550,"restFrame":0,"loopFrames":[1,2,3,4],"cycles":3,"loopDurations":[[50,40,50,50],[40,50,50,40],[50,50,40,50]],"finalDown2Ms":150,"frames":["静态","抬起1","抬起2","放下1","放下2"],"src":"panda-assets/prone-wag-e89f0b111788.webp"}</script>
+<script id="idleWagData" type="application/json">{"cellWidth":1280,"cellHeight":1100,"cols":3,"rows":3,"count":9,"offsetX":192,"anchorWidth":1024,"restFrame":0,"entryFrames":[1],"loopFrames":[2,3,4,5,6,7],"exitFrames":[8,0],"frameMs":[70,70,60,60,70,60,60,60,80],"cycles":[3,3],"speedRange":[0.85,1.15],"frames":[{"index":0,"name":"rest"},{"index":1,"name":"entry"},{"index":2,"name":"up-low"},{"index":3,"name":"up-middle"},{"index":4,"name":"turn-high"},{"index":5,"name":"down-high"},{"index":6,"name":"down-middle"},{"index":7,"name":"down-low"},{"index":8,"name":"exit"}],"src":"panda-assets/idle-wag-6261059ddb49.webp"}</script>
 <script id="walkData" type="application/json">{"file":"walk-atlas.png","width":1536,"height":1536,"cols":3,"rows":4,"cellWidth":512,"cellHeight":384,"count":12,"fps":8,"durationMs":1500,"distancePerCycle":190,"frameOrder":"left-to-right, top-to-bottom","direction":"right","sourceVideo":"MOV_0330","sourceStartSec":42.934,"sourceEndExclusiveSec":43.741,"rgbSource":"Approved fluffy straight fur right walk and per-frame mirrored left walk with heart marking","alignment":"Approved tail/root/middle-arc edits; left frames individually mirrored from right with local heart fur","transparency":"RGBA chromakey extraction","sha256":"88c2390ce77812175739dc3915ba56fd9fea4dd0fc4ae17dbec64b88a2122ef9","travelPixelsPerSecond":109.25,"referenceMultiplier":1.5,"referenceFPS":12}</script>
 <script>
 /* Shared geometry for the editor, export, and nonvisual gesture tests. */
@@ -424,9 +426,9 @@
 });
 
 </script>
-<script id="sideProneWagData" type="application/json">{"cellWidth":1536,"cellHeight":1536,"cols":3,"rows":2,"count":5,"restFrame":0,"offsetX":0,"anchorWidth":1536,"sequence":[0,1,2,3,4,0,1,2,2,3,4,0],"frameMs":45,"cycles":3,"src":"panda-assets/side-prone-wag-67e1cd6425a0.png"}</script>
-<script type="application/json" id="restPoseData">[{"pose":2,"label":"趴着"},{"pose":8,"label":"侧着趴下","width":1536,"height":1536,"src":"panda-assets/side-prone-rest-1d206f42a828.png"}]</script>
-<script id="frisbeeData" type="application/json">{"version":1,"sourceWidth":1792,"sourceHeight":1616,"width":896,"height":808,"columns":4,"pages":[{"src":"panda-assets/frisbee-play/journey-1-0fd1ec9b34f7.png","width":3584,"height":1616},{"src":"panda-assets/frisbee-play/journey-2-5c4eed347862.png","width":3584,"height":1616},{"src":"panda-assets/frisbee-play/journey-3-add2881d9203.png","width":3584,"height":1616},{"src":"panda-assets/frisbee-play/journey-4-4539c701a79d.png","width":3584,"height":1616},{"src":"panda-assets/frisbee-play/journey-5-63b1027f4d4f.png","width":3584,"height":1616},{"src":"panda-assets/frisbee-play/journey-6-f4736ea508db.png","width":3584,"height":1616},{"src":"panda-assets/frisbee-play/journey-7-1fa68a310e08.png","width":3584,"height":1616},{"src":"panda-assets/frisbee-play/journey-8-7fd8b1f29dcf.png","width":3584,"height":808}],"frames":[{"id":"D01","phase":"outbound","duration":70,"page":0,"x":0,"y":0},{"id":"D02","phase":"outbound","duration":70,"page":0,"x":896,"y":0},{"id":"D03","phase":"outbound","duration":70,"page":0,"x":1792,"y":0},{"id":"D04","phase":"outbound","duration":70,"page":0,"x":2688,"y":0},{"id":"D05","phase":"outbound","duration":70,"page":0,"x":0,"y":808},{"id":"D06","phase":"outbound","duration":70,"page":0,"x":896,"y":808},{"id":"D07","phase":"outbound","duration":70,"page":0,"x":1792,"y":808},{"id":"D08","phase":"outbound","duration":70,"page":0,"x":2688,"y":808},{"id":"D09","phase":"outbound","duration":70,"page":1,"x":0,"y":0},{"id":"D10","phase":"outbound","duration":70,"page":1,"x":896,"y":0},{"id":"D11","phase":"outbound","duration":70,"page":1,"x":1792,"y":0},{"id":"D12","phase":"outbound","duration":70,"page":1,"x":2688,"y":0},{"id":"D13","phase":"outbound","duration":100,"page":1,"x":0,"y":808},{"id":"D14","phase":"outbound","duration":100,"page":1,"x":896,"y":808},{"id":"J01","phase":"catch","duration":80,"page":1,"x":1792,"y":808},{"id":"J02","phase":"catch","duration":60,"page":1,"x":2688,"y":808},{"id":"J03","phase":"catch","duration":160,"page":2,"x":0,"y":0},{"id":"J04","phase":"catch","duration":60,"page":2,"x":896,"y":0},{"id":"J05","phase":"catch","duration":100,"page":2,"x":1792,"y":0},{"id":"J06","phase":"catch","duration":140,"page":2,"x":2688,"y":0},{"id":"J07","phase":"catch","duration":140,"page":2,"x":0,"y":808},{"id":"J08","phase":"catch","duration":220,"page":2,"x":896,"y":808},{"id":"J09","phase":"catch","duration":140,"page":2,"x":1792,"y":808},{"id":"J10","phase":"catch","duration":130,"page":2,"x":2688,"y":808},{"id":"J11","phase":"catch","duration":60,"page":3,"x":0,"y":0},{"id":"J12","phase":"catch","duration":480,"page":3,"x":896,"y":0},{"id":"T01","phase":"turn","duration":100,"page":3,"x":1792,"y":0},{"id":"B02","phase":"turn","duration":100,"page":3,"x":2688,"y":0},{"id":"R01","phase":"return","duration":100,"page":3,"x":0,"y":808},{"id":"R02","phase":"return","duration":100,"page":3,"x":896,"y":808},{"id":"R03","phase":"return","duration":100,"page":3,"x":1792,"y":808},{"id":"R04","phase":"return","duration":100,"page":3,"x":2688,"y":808},{"id":"R05","phase":"return","duration":100,"page":4,"x":0,"y":0},{"id":"R06","phase":"return","duration":100,"page":4,"x":896,"y":0},{"id":"R07","phase":"return","duration":100,"page":4,"x":1792,"y":0},{"id":"R08","phase":"return","duration":100,"page":4,"x":2688,"y":0},{"id":"R09","phase":"return","duration":100,"page":4,"x":0,"y":808},{"id":"R10","phase":"return","duration":100,"page":4,"x":896,"y":808},{"id":"R11","phase":"return","duration":100,"page":4,"x":1792,"y":808},{"id":"R12","phase":"return","duration":100,"page":4,"x":2688,"y":808},{"id":"R13","phase":"return","duration":100,"page":5,"x":0,"y":0},{"id":"R14","phase":"return","duration":100,"page":5,"x":896,"y":0},{"id":"R15","phase":"return","duration":100,"page":5,"x":1792,"y":0},{"id":"R16","phase":"return","duration":100,"page":5,"x":2688,"y":0},{"id":"R17","phase":"return","duration":100,"page":5,"x":0,"y":808},{"id":"R18","phase":"return","duration":100,"page":5,"x":896,"y":808},{"id":"R19","phase":"return","duration":100,"page":5,"x":1792,"y":808},{"id":"R20","phase":"return","duration":100,"page":5,"x":2688,"y":808},{"id":"R21","phase":"return","duration":100,"page":6,"x":0,"y":0},{"id":"R22","phase":"return","duration":100,"page":6,"x":896,"y":0},{"id":"R23","phase":"return","duration":100,"page":6,"x":1792,"y":0},{"id":"R24","phase":"return","duration":100,"page":6,"x":2688,"y":0},{"id":"R25","phase":"return","duration":100,"page":6,"x":0,"y":808},{"id":"R26","phase":"return","duration":100,"page":6,"x":896,"y":808},{"id":"R27","phase":"return","duration":100,"page":6,"x":1792,"y":808},{"id":"R28","phase":"return","duration":100,"page":6,"x":2688,"y":808},{"id":"R29","phase":"return","duration":100,"page":7,"x":0,"y":0},{"id":"R30","phase":"handoff","duration":180,"page":7,"x":896,"y":0},{"id":"R31","phase":"handoff","duration":160,"page":7,"x":1792,"y":0},{"id":"R33","phase":"handoff","duration":200,"page":7,"x":2688,"y":0}],"ready":"panda-assets/frisbee-play/ready-r33-10bccb87dc0f.png","disc":"panda-assets/frisbee-play/throwable-disc-4dc181f6eb6b.png","discRect":{"x":560.355614973262,"y":1089.3480741797432,"width":734.0909090909091,"height":403.96433666191155},"landed":"panda-assets/frisbee-play/landed-wait-3cb6b2611661.png","heldDiscRect":{"x":532,"y":855,"width":587,"height":488},"launch":{"id":"D00","src":"panda-assets/frisbee-play/launch-turn-d00-ebaf5e7bec4d.png","width":896,"height":808,"sourceOffsetX":0,"playback":"single-fixed-frame","duration":100},"foot":{"x":658.6077669902912,"y":1602},"idleFoot":{"x":0.6216792692719486,"y":0.9554545454545454},"sceneBounds":{"left":20,"top":0,"right":1569,"bottom":1616},"throwTarget":{"x":971.5070745264212,"y":757.265260532828,"width":237},"throwDuration":100,"normalRate":1,"praisedRate":1.8}</script>
+<script id="sideProneWagData" type="application/json">{"cellWidth":1536,"cellHeight":1536,"cols":3,"rows":2,"count":5,"restFrame":0,"offsetX":0,"anchorWidth":1536,"sequence":[0,1,2,3,4,0,1,2,2,3,4,0],"frameMs":45,"cycles":3,"src":"panda-assets/side-prone-wag-654c43cba935.webp"}</script>
+<script type="application/json" id="restPoseData">[{"pose":2,"label":"趴着"},{"pose":8,"label":"侧着趴下","width":1448,"height":1448,"src":"panda-assets/side-prone-rest-968deed31f25.webp"}]</script>
+<script id="frisbeeData" type="application/json">{"version":1,"sourceWidth":1792,"sourceHeight":1616,"width":896,"height":808,"columns":4,"pages":[{"src":"panda-assets/frisbee-play/journey-1-f7233e7e1f4c.webp","width":3584,"height":1616},{"src":"panda-assets/frisbee-play/journey-2-5eac4493ee69.webp","width":3584,"height":1616},{"src":"panda-assets/frisbee-play/journey-3-6d346e44a6f3.webp","width":3584,"height":1616},{"src":"panda-assets/frisbee-play/journey-4-47c8aeff8698.webp","width":3584,"height":1616},{"src":"panda-assets/frisbee-play/journey-5-767d7e7488a5.webp","width":3584,"height":1616},{"src":"panda-assets/frisbee-play/journey-6-f991a5eb222a.webp","width":3584,"height":1616},{"src":"panda-assets/frisbee-play/journey-7-83ff0d73ba17.webp","width":3584,"height":1616},{"src":"panda-assets/frisbee-play/journey-8-bb8b4a0f6cea.webp","width":3584,"height":808}],"frames":[{"id":"D01","phase":"outbound","duration":70,"page":0,"x":0,"y":0},{"id":"D02","phase":"outbound","duration":70,"page":0,"x":896,"y":0},{"id":"D03","phase":"outbound","duration":70,"page":0,"x":1792,"y":0},{"id":"D04","phase":"outbound","duration":70,"page":0,"x":2688,"y":0},{"id":"D05","phase":"outbound","duration":70,"page":0,"x":0,"y":808},{"id":"D06","phase":"outbound","duration":70,"page":0,"x":896,"y":808},{"id":"D07","phase":"outbound","duration":70,"page":0,"x":1792,"y":808},{"id":"D08","phase":"outbound","duration":70,"page":0,"x":2688,"y":808},{"id":"D09","phase":"outbound","duration":70,"page":1,"x":0,"y":0},{"id":"D10","phase":"outbound","duration":70,"page":1,"x":896,"y":0},{"id":"D11","phase":"outbound","duration":70,"page":1,"x":1792,"y":0},{"id":"D12","phase":"outbound","duration":70,"page":1,"x":2688,"y":0},{"id":"D13","phase":"outbound","duration":100,"page":1,"x":0,"y":808},{"id":"D14","phase":"outbound","duration":100,"page":1,"x":896,"y":808},{"id":"J01","phase":"catch","duration":80,"page":1,"x":1792,"y":808},{"id":"J02","phase":"catch","duration":60,"page":1,"x":2688,"y":808},{"id":"J03","phase":"catch","duration":160,"page":2,"x":0,"y":0},{"id":"J04","phase":"catch","duration":60,"page":2,"x":896,"y":0},{"id":"J05","phase":"catch","duration":100,"page":2,"x":1792,"y":0},{"id":"J06","phase":"catch","duration":140,"page":2,"x":2688,"y":0},{"id":"J07","phase":"catch","duration":140,"page":2,"x":0,"y":808},{"id":"J08","phase":"catch","duration":220,"page":2,"x":896,"y":808},{"id":"J09","phase":"catch","duration":140,"page":2,"x":1792,"y":808},{"id":"J10","phase":"catch","duration":130,"page":2,"x":2688,"y":808},{"id":"J11","phase":"catch","duration":60,"page":3,"x":0,"y":0},{"id":"J12","phase":"catch","duration":480,"page":3,"x":896,"y":0},{"id":"T01","phase":"turn","duration":100,"page":3,"x":1792,"y":0},{"id":"B02","phase":"turn","duration":100,"page":3,"x":2688,"y":0},{"id":"R01","phase":"return","duration":100,"page":3,"x":0,"y":808},{"id":"R02","phase":"return","duration":100,"page":3,"x":896,"y":808},{"id":"R03","phase":"return","duration":100,"page":3,"x":1792,"y":808},{"id":"R04","phase":"return","duration":100,"page":3,"x":2688,"y":808},{"id":"R05","phase":"return","duration":100,"page":4,"x":0,"y":0},{"id":"R06","phase":"return","duration":100,"page":4,"x":896,"y":0},{"id":"R07","phase":"return","duration":100,"page":4,"x":1792,"y":0},{"id":"R08","phase":"return","duration":100,"page":4,"x":2688,"y":0},{"id":"R09","phase":"return","duration":100,"page":4,"x":0,"y":808},{"id":"R10","phase":"return","duration":100,"page":4,"x":896,"y":808},{"id":"R11","phase":"return","duration":100,"page":4,"x":1792,"y":808},{"id":"R12","phase":"return","duration":100,"page":4,"x":2688,"y":808},{"id":"R13","phase":"return","duration":100,"page":5,"x":0,"y":0},{"id":"R14","phase":"return","duration":100,"page":5,"x":896,"y":0},{"id":"R15","phase":"return","duration":100,"page":5,"x":1792,"y":0},{"id":"R16","phase":"return","duration":100,"page":5,"x":2688,"y":0},{"id":"R17","phase":"return","duration":100,"page":5,"x":0,"y":808},{"id":"R18","phase":"return","duration":100,"page":5,"x":896,"y":808},{"id":"R19","phase":"return","duration":100,"page":5,"x":1792,"y":808},{"id":"R20","phase":"return","duration":100,"page":5,"x":2688,"y":808},{"id":"R21","phase":"return","duration":100,"page":6,"x":0,"y":0},{"id":"R22","phase":"return","duration":100,"page":6,"x":896,"y":0},{"id":"R23","phase":"return","duration":100,"page":6,"x":1792,"y":0},{"id":"R24","phase":"return","duration":100,"page":6,"x":2688,"y":0},{"id":"R25","phase":"return","duration":100,"page":6,"x":0,"y":808},{"id":"R26","phase":"return","duration":100,"page":6,"x":896,"y":808},{"id":"R27","phase":"return","duration":100,"page":6,"x":1792,"y":808},{"id":"R28","phase":"return","duration":100,"page":6,"x":2688,"y":808},{"id":"R29","phase":"return","duration":100,"page":7,"x":0,"y":0},{"id":"R30","phase":"handoff","duration":180,"page":7,"x":896,"y":0},{"id":"R31","phase":"handoff","duration":160,"page":7,"x":1792,"y":0},{"id":"R33","phase":"handoff","duration":200,"page":7,"x":2688,"y":0}],"ready":"panda-assets/frisbee-play/ready-r33-a5b76e2d4785.webp","disc":"panda-assets/frisbee-play/throwable-disc-160253d4e4e0.webp","discRect":{"x":560.355614973262,"y":1089.3480741797432,"width":734.0909090909091,"height":403.96433666191155},"landed":"panda-assets/frisbee-play/landed-wait-c1b23e644d4b.webp","heldDiscRect":{"x":532,"y":855,"width":587,"height":488},"launch":{"id":"D00","src":"panda-assets/frisbee-play/launch-turn-d00-4a8ba22d5fc4.webp","width":896,"height":808,"sourceOffsetX":0,"playback":"single-fixed-frame","duration":100},"foot":{"x":658.6077669902912,"y":1602},"idleFoot":{"x":0.6216792692719486,"y":0.9554545454545454},"sceneBounds":{"left":20,"top":0,"right":1569,"bottom":1616},"throwTarget":{"x":971.5070745264212,"y":757.265260532828,"width":237},"throwDuration":100,"normalRate":1,"praisedRate":1.8}</script>
 <script>
 (()=>{'use strict';
 const $=id=>document.getElementById(id),scene=$('scene'),actor=$('panda'),sprite=$('sprite'),walkCanvas=$('walkCanvas'),walkContext=walkCanvas.getContext('2d');
@@ -503,7 +505,7 @@ for(const id of Object.keys(places)){
  const image=new Image();image.src=id==='living'?$('room').src:sceneFiles[id];placeImages[id]=image;
 }
 Object.assign(state,{viewScene:'living',dogScene:'living',sceneChange:0,sceneLoading:false,lastPageActivity:Date.now(),sleepTimer:null,autoLieSince:null,sleepPointers:new Set()});
-function canAutoSleep(){return !frisbeeFeature?.active&&state.walkReady&&!state.sceneLoading&&!state.moving&&!bellyActive()&&(state.pose===0||isRestPose(state.pose)||state.pose===7)&&state.sleepPointers.size===0;}
+function canAutoSleep(){return !state.sitLieActive&&!frisbeeFeature?.active&&state.walkReady&&!state.sceneLoading&&!state.moving&&!bellyActive()&&(state.pose===0||isRestPose(state.pose)||state.pose===7)&&state.sleepPointers.size===0;}
 function scheduleAutoSleep(){
  clearTimeout(state.sleepTimer);state.sleepTimer=null;
  if(!canAutoSleep()){state.autoLieSince=null;return;}
@@ -516,6 +518,7 @@ function scheduleAutoSleep(){
   if(Date.now()<deadline){scheduleAutoSleep();return;}
   stop();state.rest=2;
   if(!lyingStage){
+   if(state.pose===0&&startSitLie()){if(isHere())note('熊猫侧躺下来休息了');return;}
    state.autoLieSince=Date.now();setPose(7);syncPresence();savePlace();
    if(isHere())note('熊猫侧躺下来休息了');
   }else{
@@ -668,14 +671,73 @@ function callPanda(){
  runWalk(...place.call,true);
 }
 
+const sitLieCanvas=$('sitLieCanvas'),sitLieMeta=JSON.parse($('sitLieData').textContent),sitLieAtlas=new Image();
+Object.assign(state,{sitLieReady:false,sitLieActive:false,sitLieTimer:null,sitLieToken:0,sitLieFrame:null});
+async function prepareSitLie(){
+ sitLieAtlas.src=sitLieMeta.src;await ready(sitLieAtlas);
+ const {cellWidth:w,cellHeight:h,cols,rows,frames,frameMs}=sitLieMeta;
+ if(sitLieAtlas.naturalWidth!==w*cols||sitLieAtlas.naturalHeight!==h*rows||frames.length!==7||frames.length!==frameMs.length||frames.some(n=>!Number.isInteger(n)||n<0||n>=cols*rows)||frameMs.some(ms=>!Number.isFinite(ms)||ms<=0))throw new Error('Invalid sit-to-side-lying atlas');
+ sitLieCanvas.width=w;sitLieCanvas.height=h;state.sitLieReady=true;
+ if(state.pose===7&&!state.moving&&!bellyActive()){setPose(7);syncPresence();}
+}
+function sitLieVisible(){return state.pose===7&&state.sitLieReady&&!sitLieCanvas.hidden;}
+function positionSitLie(){
+ const m=sitLieMeta,width=places[state.dogScene].width;
+ const left=(m.offsetX+m.visibleBounds.left*m.scale)/m.anchorWidth-.5;
+ const right=(m.offsetX+m.visibleBounds.right*m.scale)/m.anchorWidth-.5;
+ state.x=Math.max(2-left*width,Math.min(98-right*width,state.x));
+ actor.style.left=state.x+'%';
+}
+function showSitLieFrame(frame){
+ const m=sitLieMeta,w=m.cellWidth,h=m.cellHeight,ctx=sitLieCanvas.getContext('2d');
+ ctx.clearRect(0,0,w,h);ctx.drawImage(sitLieAtlas,frame%m.cols*w,Math.floor(frame/m.cols)*h,w,h,0,0,w,h);
+ state.sitLieFrame=frame;sprite.hidden=true;walkCanvas.hidden=true;sitLieCanvas.hidden=false;
+ actor.classList.add('sit-side-lying');actor.classList.remove('asleep');actor.style.aspectRatio=m.anchorWidth+'/'+m.anchorHeight;
+}
+function cancelSitLie(){
+ state.sitLieToken++;if(state.sitLieTimer!==null)clearTimeout(state.sitLieTimer);
+ state.sitLieTimer=null;state.sitLieActive=false;state.sitLieFrame=null;
+ sitLieCanvas.hidden=true;actor.classList.remove('sit-side-lying');
+}
+function startSitLie(){
+ if(state.sitLieActive)return true;
+ if(reduced||!state.sitLieReady||state.pose!==0)return false;
+ setPose(7);state.sitLieActive=true;state.autoLieSince=null;
+ const token=++state.sitLieToken,startedActivity=state.lastPageActivity;let cursor=0;
+ function next(){
+  if(token!==state.sitLieToken||!state.sitLieActive||state.pose!==7)return;
+  state.sitLieTimer=null;
+  if(cursor===sitLieMeta.frames.length){
+   state.sitLieActive=false;state.autoLieSince=state.lastPageActivity===startedActivity?Date.now():null;syncPresence();savePlace();return;
+  }
+  const index=cursor++;showSitLieFrame(sitLieMeta.frames[index]);
+  state.sitLieTimer=setTimeout(next,sitLieMeta.frameMs[index]);
+ }
+ next();syncPresence();savePlace();return true;
+}
+function hitSitLie(clientX,clientY){
+ if(!sitLieVisible())return false;
+ const box=sitLieCanvas.getBoundingClientRect();
+ if(!box.width||!box.height||clientX<box.left||clientX>=box.right||clientY<box.top||clientY>=box.bottom)return false;
+ const x=Math.floor((clientX-box.left)/box.width*sitLieCanvas.width),y=Math.floor((clientY-box.top)/box.height*sitLieCanvas.height);
+ try{return sitLieCanvas.getContext('2d').getImageData(x,y,1,1).data[3]>12;}catch(_){return false;}
+}
+
 const bellyCanvas=$('bellyCanvas'),bellyMeta=JSON.parse($('bellyData').textContent);
-const bellyAtlas=new Image(),bellyRestImage=new Image();
-Object.assign(state,{affection:newAffection(),bellyReady:false,bellyTimers:[],bellyToken:0,bellyFrame:null,bellyAfter:null});
+const bellyAtlas=new Image(),bellyRestImage=new Image(),bellyRiseAtlas=new Image();
+Object.assign(state,{affection:newAffection(),bellyReady:false,bellyRiseReady:false,bellyTimers:[],bellyToken:0,bellyFrame:null,bellyAfter:null});
 function bellyActive(){return state.affection.phase!=='none';}
 function bellyWidth(){return Math.min(76,places[state.dogScene].width*1.26);}
+async function prepareBellyRiseFrames(){
+ state.bellyRiseReady=false;
+ const {src,cellSize,cols,sourceFrames}=bellyMeta.riseOverrides;
+ bellyRiseAtlas.src=src;await ready(bellyRiseAtlas);
+ if(cellSize!==bellyMeta.cellSize||bellyRiseAtlas.naturalWidth!==cellSize*cols||bellyRiseAtlas.naturalHeight!==cellSize*Math.ceil(sourceFrames.length/cols))throw new Error('Invalid belly get-up atlas');
+ state.bellyRiseReady=true;
+}
 async function prepareBellySprite(){
  bellyAtlas.src=bellyMeta.src;bellyRestImage.src=bellyMeta.restSrc;
- await Promise.all([ready(bellyAtlas),ready(bellyRestImage)]);
+ await Promise.all([ready(bellyAtlas),ready(bellyRestImage),prepareBellyRiseFrames().catch(error=>console.warn('Belly get-up detail frames unavailable',error))]);
  if(bellyRestImage.naturalWidth!==bellyMeta.restSize||bellyRestImage.naturalHeight!==bellyMeta.restSize)throw new Error("Invalid belly rest image");
  const {cellSize,cols,sourceFrames}=bellyMeta;
  if(bellyAtlas.naturalWidth!==cellSize*cols||bellyAtlas.naturalHeight!==cellSize*Math.ceil(sourceFrames.length/cols))throw new Error('Invalid belly atlas');
@@ -685,10 +747,12 @@ async function prepareBellySprite(){
 function showBellyFrame(sourceFrame){
  const index=bellyMeta.sourceFrames.indexOf(sourceFrame),size=bellyMeta.cellSize;
  if(index<0||!state.bellyReady)return;
+ const rise=bellyMeta.riseOverrides,riseIndex=state.affection.phase==='rising'&&state.bellyRiseReady?rise.sourceFrames.indexOf(sourceFrame):-1;
  const rest=sourceFrame===bellyMeta.restFrame,targetSize=rest?bellyMeta.restSize:size;
  if(bellyCanvas.width!==targetSize)bellyCanvas.width=bellyCanvas.height=targetSize;
  const ctx=bellyCanvas.getContext('2d');ctx.clearRect(0,0,targetSize,targetSize);
  if(rest)ctx.drawImage(bellyRestImage,0,0);
+ else if(riseIndex>=0)ctx.drawImage(bellyRiseAtlas,riseIndex%rise.cols*size,Math.floor(riseIndex/rise.cols)*size,size,size,0,0,size,size);
  else ctx.drawImage(bellyAtlas,index%bellyMeta.cols*size,Math.floor(index/bellyMeta.cols)*size,size,size,0,0,size,size);
  state.bellyFrame=sourceFrame;state.pose=6;sprite.hidden=true;walkCanvas.hidden=true;bellyCanvas.hidden=false;
  actor.classList.remove('asleep');actor.classList.add('belly-up');
@@ -727,23 +791,24 @@ const sideProneBellyMeta=JSON.parse($('sideProneBellyData').textContent),sidePro
 state.sideProneBellyReady=false;
 async function prepareSideProneBelly(){
  sideProneBellyAtlas.src=sideProneBellyMeta.src;await ready(sideProneBellyAtlas);
- const {cellSize,cols,rows}=sideProneBellyMeta;
- if(sideProneBellyAtlas.naturalWidth!==cellSize*cols||sideProneBellyAtlas.naturalHeight!==cellSize*rows)throw new Error('Invalid side-prone belly atlas');
+ const {cellWidth:w,cellHeight:h,cols,rows,frames,frameMs}=sideProneBellyMeta;
+ if(sideProneBellyAtlas.naturalWidth!==w*cols||sideProneBellyAtlas.naturalHeight!==h*rows||frames.length!==frameMs.length||frameMs.some(ms=>!Number.isFinite(ms)||ms<=0))throw new Error('Invalid side-prone belly atlas');
  state.sideProneBellyReady=true;
 }
 function showSideProneBellyFrame(frame){
  showBellyFrame(bellyMeta.restFrame);
- const {cellSize:size,cols}=sideProneBellyMeta,ctx=bellyCanvas.getContext('2d');
- ctx.clearRect(0,0,size,size);
- ctx.drawImage(sideProneBellyAtlas,frame%cols*size,Math.floor(frame/cols)*size,size,size,0,0,size,size);
+ const {cellWidth:w,cellHeight:h,cols,destination:d}=sideProneBellyMeta,ctx=bellyCanvas.getContext('2d');
+ ctx.clearRect(0,0,bellyCanvas.width,bellyCanvas.height);
+ ctx.drawImage(sideProneBellyAtlas,frame%cols*w,Math.floor(frame/cols)*h,w,h,d.x,d.y,d.width,d.height);
  state.bellyFrame='side-prone-'+frame;
 }
 function playSideProneBelly(done){
  let cursor=0;
  function next(){
   if(cursor===sideProneBellyMeta.frames.length){done();return;}
-  showSideProneBellyFrame(sideProneBellyMeta.frames[cursor++]);
-  syncPresence();bellyLater(next,sideProneBellyMeta.frameMs);
+  const index=cursor++;
+  showSideProneBellyFrame(sideProneBellyMeta.frames[index]);
+  syncPresence();bellyLater(next,sideProneBellyMeta.frameMs[index]);
  }
  next();
 }
@@ -957,8 +1022,8 @@ function activeTailWag(){
 }
 
 const focusStack=[];const last=items=>items[items.length-1];
-function setPose(n){actor.classList.toggle('idle-rest',n===0);cancelSideProneWag(false);cancelSideHead();const resting=restPoseOption(n);actor.classList.toggle('custom-rest',Boolean(resting&&resting.image));actor.classList.toggle('side-lying',n===7);actor.classList.toggle('handshaking',n===1);if(n!==1)state.pawSide=0;actor.classList.toggle('paw-other',n===1&&state.pawSide===1);cancelBellyWag();cancelIdleWag();cancelProneWag(false);if(n===6){showBellyPose();return;}hideBellyPose();state.pose=n;if(n===8){const half=bellyWidth()/2+2;state.x=Math.max(half,Math.min(100-half,state.x));}if(resting&&resting.image){actor.style.setProperty('--rest-pose-image','url("'+resting.src+'")');actor.style.aspectRatio=`${resting.width}/${resting.height}`;actor.classList.remove('asleep');sprite.hidden=false;walkCanvas.hidden=true;return;}if(n===7){actor.style.aspectRatio='1600/1024';actor.classList.remove('asleep');sprite.hidden=false;walkCanvas.hidden=true;return;}const [x,y,w,h]=cells[n];const sx=1536/w*100,sy=1024/h*100,px=x/(1536-w)*100,py=y/(1024-h)*100;sprite.style.backgroundSize=`${sx}% ${sy}%`;sprite.style.backgroundPosition=`${px}% ${py}%`;sprite.style.maskSize=`${sx}% ${sy}%`;sprite.style.webkitMaskSize=`${sx}% ${sy}%`;sprite.style.maskPosition=`${px}% ${py}%`;sprite.style.webkitMaskPosition=`${px}% ${py}%`;actor.style.aspectRatio=`${w}/${h}`;actor.classList.toggle('asleep',n===5);sprite.hidden=false;walkCanvas.hidden=true;if(n===2&&state.proneWagReady)showProneWagFrame(proneWagMeta.restFrame);}
-function stop(){cancelSideProneWag();cancelSideHead();cancelIdleWag();cancelProneWag();clearTimeout(state.timer);state.timer=null;if(state.raf!==null)cancelAnimationFrame(state.raf);state.raf=null;state.motion=null;const wasMoving=state.moving;state.moving=false;actor.classList.remove('walking');if(wasMoving)setPose(0);}
+function setPose(n){cancelSitLie();actor.classList.toggle('idle-rest',n===0);cancelSideProneWag(false);cancelSideHead();const resting=restPoseOption(n);actor.classList.toggle('custom-rest',Boolean(resting&&resting.image));actor.classList.toggle('side-lying',n===7);actor.classList.toggle('handshaking',n===1);if(n!==1)state.pawSide=0;actor.classList.toggle('paw-other',n===1&&state.pawSide===1);cancelBellyWag();cancelIdleWag();cancelProneWag(false);if(n===6){showBellyPose();return;}hideBellyPose();state.pose=n;if(n===8){const half=bellyWidth()/2+2;state.x=Math.max(half,Math.min(100-half,state.x));}if(resting&&resting.image){actor.style.setProperty('--rest-pose-image','url("'+resting.src+'")');actor.style.aspectRatio=`${resting.width}/${resting.height}`;actor.classList.remove('asleep');sprite.hidden=false;walkCanvas.hidden=true;return;}if(n===7){if(state.sitLieReady){positionSitLie();showSitLieFrame(sitLieMeta.restFrame);return;}actor.style.aspectRatio='1600/1024';actor.classList.remove('asleep');sprite.hidden=false;walkCanvas.hidden=true;return;}const [x,y,w,h]=cells[n];const sx=1536/w*100,sy=1024/h*100,px=x/(1536-w)*100,py=y/(1024-h)*100;sprite.style.backgroundSize=`${sx}% ${sy}%`;sprite.style.backgroundPosition=`${px}% ${py}%`;sprite.style.maskSize=`${sx}% ${sy}%`;sprite.style.webkitMaskSize=`${sx}% ${sy}%`;sprite.style.maskPosition=`${px}% ${py}%`;sprite.style.webkitMaskPosition=`${px}% ${py}%`;actor.style.aspectRatio=`${w}/${h}`;actor.classList.toggle('asleep',n===5);sprite.hidden=false;walkCanvas.hidden=true;if(n===2&&state.proneWagReady)showProneWagFrame(proneWagMeta.restFrame);}
+function stop(){cancelSitLie();cancelSideProneWag();cancelSideHead();cancelIdleWag();cancelProneWag();clearTimeout(state.timer);state.timer=null;if(state.raf!==null)cancelAnimationFrame(state.raf);state.raf=null;state.motion=null;const wasMoving=state.moving;state.moving=false;actor.classList.remove('walking');if(wasMoving)setPose(0);}
 function note(text){
  const message=$('sceneNote'),here=isHere();
  clearTimeout(sceneNoteTimer);sceneNoteTimer=null;
@@ -974,17 +1039,20 @@ function heart(x=state.x,y=Math.max(10,state.y-27)){const p=document.createEleme
 function cancelSideHead(){
  clearTimeout(state.sideHeadTimer);state.sideHeadTimer=null;
  state.sideHeadRaised=false;actor.classList.remove('side-head-raised');
+ if(sitLieVisible()&&!state.sitLieActive)showSitLieFrame(sitLieMeta.restFrame);
 }
 function raiseSideHead(){
- if(state.pose!==7||state.moving||bellyActive())return;
+ if(state.pose!==7||state.moving||bellyActive()||state.sitLieActive)return;
  clearTimeout(state.sideHeadTimer);state.sideHeadRaised=true;
  actor.classList.add('side-head-raised');
+ if(sitLieVisible())showSitLieFrame(sitLieMeta.raisedFrame);
  state.sideHeadTimer=setTimeout(()=>{
   cancelSideHead();
   if(state.pose===7&&!state.moving&&!bellyActive()){syncPresence();savePlace();}
  },2000);
 }
 function pet(){
+ if(state.sitLieActive)return;
  if(frisbeeFeature?.active)return;
  if(state.moving)return;
  if(!availableForTouch())return;
@@ -1050,6 +1118,7 @@ function move(x,y){
 actor.addEventListener('click',e=>{e.stopPropagation();pet();});$('paw').addEventListener('click',paw);$('rest').addEventListener('click',rest);$('come').addEventListener('click',callPanda);
 scene.addEventListener('click',e=>{
  if(e.target.closest('button'))return;
+ if(isHere()&&hitSitLie(e.clientX,e.clientY)){e.stopPropagation();pet();return;}
  if(!$('sceneMenu').hidden){closePlaces();return;}
  if(bellyActive()||!availableForTouch())return;
  const b=scene.getBoundingClientRect(),x=(e.clientX-b.left)/b.width*100,y=(e.clientY-b.top)/b.height*100;
@@ -1124,6 +1193,7 @@ $('openHelp').addEventListener('click', () => openDialog('helpOverlay'));
 function ready(img){if(img.complete)return img.naturalWidth?Promise.resolve():Promise.reject(new Error('Image failed'));return new Promise((resolve,reject)=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',reject,{once:true});});}
 function captureActor(){
  const cut=document.createElement('canvas');
+ if(sitLieVisible()){cut.width=sitLieCanvas.width;cut.height=sitLieCanvas.height;cut.getContext('2d').drawImage(sitLieCanvas,0,0);return cut;}
  const wag=activeTailWag();if(wag){cut.width=wag.canvas.width;cut.height=wag.canvas.height;cut.getContext('2d').drawImage(wag.canvas,0,0);return cut;}
  if(state.pose===6&&!bellyCanvas.hidden){cut.width=bellyCanvas.width;cut.height=bellyCanvas.height;cut.getContext('2d').drawImage(bellyCanvas,0,0);return cut;}
  if(state.moving&&!walkCanvas.hidden){cut.width=walkCanvas.width;cut.height=walkCanvas.height;cut.getContext('2d').drawImage(walkCanvas,0,0);return cut;}
@@ -1152,7 +1222,7 @@ async function takePhoto(){
   const W=800,H=Math.round(W*scene.clientHeight/scene.clientWidth),out=document.createElement('canvas');out.width=W;out.height=H;
   const ctx=out.getContext('2d');
   paintSceneBackground(ctx,background,W);
-  if(isHere()&&!actor.hidden){const wagging=activeTailWag(),cut=captureActor(),box=actor.getBoundingClientRect(),sceneBox=scene.getBoundingClientRect(),ratio=W/sceneBox.width;
+  if(isHere()&&!actor.hidden){const wagging=activeTailWag(),cut=captureActor(),box=(sitLieVisible()?sitLieCanvas:actor).getBoundingClientRect(),sceneBox=scene.getBoundingClientRect(),ratio=W/sceneBox.width;
    const tailOffset=wagging?box.width*wagging.meta.offsetX/wagging.meta.anchorWidth:0;
    const actorWidth=wagging?box.width*wagging.meta.cellWidth/wagging.meta.anchorWidth:box.width;
    ctx.drawImage(cut,(box.left-sceneBox.left-tailOffset)*ratio,(box.top-sceneBox.top)*ratio,actorWidth*ratio,box.height*ratio);}
@@ -1175,6 +1245,7 @@ async function prepareAlphaMask(){
  await prepareIdleWag().catch(error=>console.warn("Idle tail animation unavailable",error));
  await prepareProneWag().catch(error=>console.warn("Prone tail animation unavailable",error));
  await prepareSideProneWag().catch(error=>console.warn("Side-prone tail animation unavailable",error));
+ prepareSitLie().catch(error=>console.warn("Sit-to-side-lying animation unavailable",error));
  await prepareDirectionalWalk();walkCanvas.width=cellWidth;walkCanvas.height=cellHeight;state.walkReady=true;
 const c=document.createElement('canvas');c.width=assets.mask.naturalWidth;c.height=assets.mask.naturalHeight;const context=c.getContext('2d');context.drawImage(assets.mask,0,0);const pixels=context.getImageData(0,0,c.width,c.height);for(let i=0;i<pixels.data.length;i+=4){pixels.data[i+3]=pixels.data[i];pixels.data[i]=255;pixels.data[i+1]=255;pixels.data[i+2]=255;}context.putImageData(pixels,0,0);document.documentElement.style.setProperty('--matte','url('+c.toDataURL('image/png')+')');sprite.style.maskMode='alpha';syncPresence();note(isHere()?(state.pose===5?'熊猫在这里睡着呢':'熊猫在这里'):'');document.documentElement.dataset.ready='true';}
 // This feature owns its state; it never calls setPose, stop, choosePlace or savePlace.
@@ -1816,9 +1887,9 @@ function createOutingFeature() {
     }
     if(!isHere()||actor.hidden)return moment;
     const wagging=activeTailWag();
-    const visible=wagging?wagging.canvas:state.pose===6&&!bellyCanvas.hidden?bellyCanvas:state.moving&&!walkCanvas.hidden?walkCanvas:sprite;
+    const visible=sitLieVisible()?sitLieCanvas:wagging?wagging.canvas:state.pose===6&&!bellyCanvas.hidden?bellyCanvas:state.moving&&!walkCanvas.hidden?walkCanvas:sprite;
     if(visible===sprite&&(!assets.atlas.naturalWidth||!assets.mask.naturalWidth))throw Error('Panda is not ready');
-    const cut=captureActor(),box=actor.getBoundingClientRect(),css=getComputedStyle(visible);
+    const cut=captureActor(),box=(sitLieVisible()?sitLieCanvas:actor).getBoundingClientRect(),css=getComputedStyle(visible);
     const left=box.left-sceneBox.left-(wagging?box.width*wagging.meta.offsetX/wagging.meta.anchorWidth:0);
     const width=wagging?box.width*wagging.meta.cellWidth/wagging.meta.anchorWidth:box.width;
     const canvas=document.createElement('canvas');canvas.width=bg.width;canvas.height=bg.height;
@@ -1844,7 +1915,7 @@ function createOutingFeature() {
     moment.frozen=Object.freeze({
       pose:Object.freeze({id:'frozen',label:'截图瞬间',canvas,bounds,anchor:{x:0,y:0},unit:1}),
       transform:Object.freeze({x:0,y:0,scale:core.WIDTH/bg.width,angle:0}),
-      frame:Object.freeze({pose:state.pose,walkFrame:state.walkFrame,idleWagFrame:state.idleWagFrame,proneWagFrame:state.proneWagFrame,bellyFrame:state.bellyFrame})
+      frame:Object.freeze({pose:state.pose,sitLieFrame:state.sitLieFrame,walkFrame:state.walkFrame,idleWagFrame:state.idleWagFrame,proneWagFrame:state.proneWagFrame,bellyFrame:state.bellyFrame})
     });
     return moment;
   }
