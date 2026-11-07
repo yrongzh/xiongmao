@@ -442,7 +442,7 @@ const $=id=>document.getElementById(id),scene=$('scene'),actor=$('panda'),sprite
 const reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const walkMeta=JSON.parse($('walkData').textContent);
 const cells=[[0,0,512,550],[472,0,496,550],[960,85,550,450],[0,560,530,450],[530,560,520,450],[1040,560,496,450]];
-const state={pose:0,x:40,y:75,rest:0,moving:false,timer:null,raf:null,motion:null,walkReady:false,walkFrame:0,facing:1,dialogStack:[],snapshotBlob:null,snapshotUrl:null};
+const state={pose:0,x:40,y:75,rest:0,moving:false,timer:null,raf:null,motion:null,walkReady:false,visualReady:false,walkFrame:0,facing:1,dialogStack:[],snapshotBlob:null,snapshotUrl:null};
 let sceneNoteTimer=null;
 let frisbeeFeature=null;
 const assets={atlas:new Image(),mask:new Image()};const cssAsset=name=>getComputedStyle(document.documentElement).getPropertyValue(name).trim().replace(/^url\((['"]?)(.*?)\1\)$/,'$2');assets.atlas.fetchPriority=assets.mask.fetchPriority='high';assets.atlas.src=cssAsset('--atlas');assets.mask.src=cssAsset('--matte');
@@ -575,7 +575,7 @@ function restorePlace(){
 }
 function syncPresence(){
  const here=isHere(),entering=isEntering();
- actor.hidden=!state.walkReady||!here;
+ actor.hidden=!state.visualReady||!here;
  actor.style.width=((state.pose===6||state.pose===8)?bellyWidth():places[state.dogScene].width)+'%';
  actor.style.left=state.x+'%';actor.style.top=state.y+'%';
  actor.style.pointerEvents=entering?'none':'';
@@ -1245,19 +1245,37 @@ $('shareSnapshot').addEventListener('click',async()=>{try{const file=new File([s
 async function prepareAlphaMask(){
  const {cols,rows,cellWidth,cellHeight,count,fps}=walkMeta;
  if(![cols,rows,cellWidth,cellHeight,count].every(n=>Number.isInteger(n)&&n>0)||count<2||count>cols*rows||!Number.isFinite(fps)||fps<=0)throw new Error('Invalid walk atlas');
+ const maskReady=ready(assets.mask).then(()=>{
+const c=document.createElement('canvas');c.width=assets.mask.naturalWidth;c.height=assets.mask.naturalHeight;const context=c.getContext('2d');context.drawImage(assets.mask,0,0);const pixels=context.getImageData(0,0,c.width,c.height);for(let i=0;i<pixels.data.length;i+=4){pixels.data[i+3]=pixels.data[i];pixels.data[i]=255;pixels.data[i+1]=255;pixels.data[i+2]=255;}context.putImageData(pixels,0,0);document.documentElement.style.setProperty('--matte','url('+c.toDataURL('image/png')+')');sprite.style.maskMode='alpha';
+ });
  const prepareBelly=()=>prepareBellySprite().catch(error=>{
   console.warn('Belly animation unavailable',error);
-  // A late optional failure must not interrupt a walk or a handshake.
   if(bellyActive()){cancelBelly();setPose(0);syncPresence();}
  });
- // Restore the saved pose with its own artwork before showing the character.
  const restoredBelly=bellyActive()?prepareBelly():null;
  const restoredSitLie=state.pose===7?prepareSitLie().catch(error=>console.warn("Sit-to-side-lying animation unavailable",error)):null;
  const earlyProne=prepareProneWag().catch(error=>console.warn("Prone tail animation unavailable",error));
  const restoredProne=state.pose===2?earlyProne:null;
- await Promise.all([ready(assets.atlas),ready(assets.mask),ready(assets.pawOther),ready(assets.pawFirst),ready(assets.sideLying),ready(assets.sideHead),ready(assets.idleRest),...restPoseOptions.filter(spec=>spec.image).map(spec=>ready(spec.image)),prepareDirectionalWalk(),restoredBelly,restoredSitLie,restoredProne]);
+ // Display readiness belongs to the visible pose. Walking and handshakes
+ // keep their existing, separate gate until all interaction assets are ready.
+ const appearanceReady=(async()=>{
+  while(!state.visualReady){
+   const pose=state.pose,resting=restPoseOption(pose);
+   if(pose===0)await ready(assets.idleRest);
+   else if(pose===6)await restoredBelly;
+   else if(pose===7){await restoredSitLie;if(!state.sitLieReady)await ready(assets.sideLying);}
+   else if(pose===2){await earlyProne;if(!state.proneWagReady)await Promise.all([ready(assets.atlas),maskReady]);}
+   else if(resting&&resting.image)await ready(resting.image);
+   else await Promise.all([ready(assets.atlas),maskReady]);
+   // A failed restored pose or a scene change may have selected another pose.
+   if(pose!==state.pose)continue;
+   setPose(pose);state.visualReady=true;syncPresence();
+   document.documentElement.dataset.appearanceReady='true';
+  }
+ })();
+ await Promise.all([ready(assets.atlas),maskReady,ready(assets.pawOther),ready(assets.pawFirst),ready(assets.sideLying),ready(assets.sideHead),ready(assets.idleRest),...restPoseOptions.filter(spec=>spec.image).map(spec=>ready(spec.image)),prepareDirectionalWalk(),restoredBelly,restoredSitLie,restoredProne,appearanceReady]);
  walkCanvas.width=cellWidth;walkCanvas.height=cellHeight;state.walkReady=true;
-const c=document.createElement('canvas');c.width=assets.mask.naturalWidth;c.height=assets.mask.naturalHeight;const context=c.getContext('2d');context.drawImage(assets.mask,0,0);const pixels=context.getImageData(0,0,c.width,c.height);for(let i=0;i<pixels.data.length;i+=4){pixels.data[i+3]=pixels.data[i];pixels.data[i]=255;pixels.data[i+1]=255;pixels.data[i+2]=255;}context.putImageData(pixels,0,0);document.documentElement.style.setProperty('--matte','url('+c.toDataURL('image/png')+')');sprite.style.maskMode='alpha';syncPresence();note(isHere()?(state.pose===5?'熊猫在这里睡着呢':'熊猫在这里'):'');document.documentElement.dataset.ready='true';
+ syncPresence();note(isHere()?(state.pose===5?'熊猫在这里睡着呢':'熊猫在这里'):'');document.documentElement.dataset.ready='true';
  // Each independent motion starts now, without delaying the basic controls
  // or waiting for the previous animation's network response and decoding.
  if(!restoredBelly)prepareBelly();
@@ -1907,7 +1925,7 @@ function createOutingFeature() {
     if(!isHere()||actor.hidden)return moment;
     const wagging=activeTailWag();
     const visible=sitLieVisible()?sitLieCanvas:wagging?wagging.canvas:state.pose===6&&!bellyCanvas.hidden?bellyCanvas:state.moving&&!walkCanvas.hidden?walkCanvas:sprite;
-    if(visible===sprite&&(!assets.atlas.naturalWidth||!assets.mask.naturalWidth))throw Error('Panda is not ready');
+    if(visible===sprite&&!state.visualReady)throw Error('Panda is not ready');
     const cut=captureActor(),box=(sitLieVisible()?sitLieCanvas:actor).getBoundingClientRect(),css=getComputedStyle(visible);
     const left=box.left-sceneBox.left-(wagging?box.width*wagging.meta.offsetX/wagging.meta.anchorWidth:0);
     const width=wagging?box.width*wagging.meta.cellWidth/wagging.meta.anchorWidth:box.width;
