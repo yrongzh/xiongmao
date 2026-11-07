@@ -1236,18 +1236,30 @@ async function takePhoto(){
 }
 $('shareSnapshot').addEventListener('click',async()=>{try{const file=new File([state.snapshotBlob],'熊猫的小家.png',{type:'image/png'});await navigator.share({files:[file]});}catch(e){if(e.name!=='AbortError')$('saveStatus').textContent='可以长按图片保存。';}});
 async function prepareAlphaMask(){
- await Promise.all([ready(assets.atlas),ready(assets.mask),ready(assets.pawOther),ready(assets.pawFirst),ready(assets.sideLying),ready(assets.sideHead),ready(assets.idleRest),...restPoseOptions.filter(spec=>spec.image).map(spec=>ready(spec.image))]);
  const {cols,rows,cellWidth,cellHeight,count,fps}=walkMeta;
  if(![cols,rows,cellWidth,cellHeight,count].every(n=>Number.isInteger(n)&&n>0)||count<2||count>cols*rows||!Number.isFinite(fps)||fps<=0)throw new Error('Invalid walk atlas');
- await prepareBellySprite().catch(()=>{cancelBelly();setPose(0);});
- await prepareBellyWag().catch(error=>console.warn("Belly tail animation unavailable",error));
- await prepareSideProneBelly().catch(error=>console.warn("Side-prone belly transition unavailable",error));
- await prepareIdleWag().catch(error=>console.warn("Idle tail animation unavailable",error));
- await prepareProneWag().catch(error=>console.warn("Prone tail animation unavailable",error));
- await prepareSideProneWag().catch(error=>console.warn("Side-prone tail animation unavailable",error));
- prepareSitLie().catch(error=>console.warn("Sit-to-side-lying animation unavailable",error));
- await prepareDirectionalWalk();walkCanvas.width=cellWidth;walkCanvas.height=cellHeight;state.walkReady=true;
-const c=document.createElement('canvas');c.width=assets.mask.naturalWidth;c.height=assets.mask.naturalHeight;const context=c.getContext('2d');context.drawImage(assets.mask,0,0);const pixels=context.getImageData(0,0,c.width,c.height);for(let i=0;i<pixels.data.length;i+=4){pixels.data[i+3]=pixels.data[i];pixels.data[i]=255;pixels.data[i+1]=255;pixels.data[i+2]=255;}context.putImageData(pixels,0,0);document.documentElement.style.setProperty('--matte','url('+c.toDataURL('image/png')+')');sprite.style.maskMode='alpha';syncPresence();note(isHere()?(state.pose===5?'熊猫在这里睡着呢':'熊猫在这里'):'');document.documentElement.dataset.ready='true';}
+ const prepareBelly=()=>prepareBellySprite().catch(error=>{
+  console.warn('Belly animation unavailable',error);
+  // A late optional failure must not interrupt a walk or a handshake.
+  if(bellyActive()){cancelBelly();setPose(0);syncPresence();}
+ });
+ // Restore the saved pose with its own artwork before showing the character.
+ const restoredBelly=bellyActive()?prepareBelly():null;
+ const restoredSitLie=state.pose===7?prepareSitLie().catch(error=>console.warn("Sit-to-side-lying animation unavailable",error)):null;
+ const restoredProne=state.pose===2?prepareProneWag().catch(error=>console.warn("Prone tail animation unavailable",error)):null;
+ await Promise.all([ready(assets.atlas),ready(assets.mask),ready(assets.pawOther),ready(assets.pawFirst),ready(assets.sideLying),ready(assets.sideHead),ready(assets.idleRest),...restPoseOptions.filter(spec=>spec.image).map(spec=>ready(spec.image)),prepareDirectionalWalk(),restoredBelly,restoredSitLie,restoredProne]);
+ walkCanvas.width=cellWidth;walkCanvas.height=cellHeight;state.walkReady=true;
+const c=document.createElement('canvas');c.width=assets.mask.naturalWidth;c.height=assets.mask.naturalHeight;const context=c.getContext('2d');context.drawImage(assets.mask,0,0);const pixels=context.getImageData(0,0,c.width,c.height);for(let i=0;i<pixels.data.length;i+=4){pixels.data[i+3]=pixels.data[i];pixels.data[i]=255;pixels.data[i+1]=255;pixels.data[i+2]=255;}context.putImageData(pixels,0,0);document.documentElement.style.setProperty('--matte','url('+c.toDataURL('image/png')+')');sprite.style.maskMode='alpha';syncPresence();note(isHere()?(state.pose===5?'熊猫在这里睡着呢':'熊猫在这里'):'');document.documentElement.dataset.ready='true';
+ // Each independent motion starts now, without delaying the basic controls
+ // or waiting for the previous animation's network response and decoding.
+ if(!restoredBelly)prepareBelly();
+ prepareBellyWag().catch(error=>console.warn("Belly tail animation unavailable",error));
+ prepareSideProneBelly().catch(error=>console.warn("Side-prone belly transition unavailable",error));
+ prepareIdleWag().catch(error=>console.warn("Idle tail animation unavailable",error));
+ if(!restoredProne)prepareProneWag().catch(error=>console.warn("Prone tail animation unavailable",error));
+ prepareSideProneWag().catch(error=>console.warn("Side-prone tail animation unavailable",error));
+ if(!restoredSitLie)prepareSitLie().catch(error=>console.warn("Sit-to-side-lying animation unavailable",error));
+}
 // This feature owns its state; it never calls setPose, stop, choosePlace or savePlace.
 function createOutingFeature() {
   'use strict';
