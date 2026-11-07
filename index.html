@@ -6,6 +6,13 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data: blob:; media-src data: blob:; style-src 'unsafe-inline'; script-src 'unsafe-inline'; connect-src 'none'; frame-src 'self'; base-uri 'none'; form-action 'none'">
 <meta name="theme-color" content="#e4e9eb">
 <title>熊猫的小家</title>
+<!-- Early room and resting-pose artwork. -->
+<link rel="preload" as="image" type="image/webp" href="panda-assets/living-ab8e0525e3a0.webp" fetchpriority="high">
+<link rel="preload" as="image" type="image/webp" href="panda-assets/idle-rest-d1df6ee343d0.webp" fetchpriority="high">
+<link rel="preload" as="image" type="image/webp" href="panda-assets/poses-5551f1cb8839.webp" fetchpriority="high">
+<link rel="preload" as="image" type="image/webp" href="panda-assets/pose-mask-83155cadcf1b.webp" fetchpriority="high">
+<link rel="preload" as="image" type="image/webp" href="panda-assets/prone-wag-e89f0b111788.webp" fetchpriority="high">
+<link rel="preload" as="image" type="image/webp" href="panda-assets/side-prone-rest-968deed31f25.webp" fetchpriority="high">
 <style>
 :root{color-scheme:light;--ink:#36454e;--paper:#e4e9eb;--blue:#466479;--line:#bac8cf;--atlas:url('panda-assets/poses-5551f1cb8839.webp');--matte:url('panda-assets/pose-mask-83155cadcf1b.webp')}
 *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;font-size:16px;line-height:1.5}button,a{-webkit-tap-highlight-color:transparent}button{font:inherit;color:inherit;cursor:pointer}button:focus-visible,a:focus-visible{outline:3px solid #476b88;outline-offset:4px}button:disabled{opacity:.45;cursor:default}[hidden]{display:none!important}
@@ -168,7 +175,7 @@
 <header class="top"><h1 class="title">熊猫的小家</h1><div class="top-actions"><button class="quiet" id="openAlbum" aria-label="打开相册" title="相册"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="8" cy="9" r="1.5"/><path d="m4 17 5-5 4 4 3-3 4 4"/></svg></button><button class="quiet" id="openHelp" aria-label="使用说明" title="使用说明"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.4 9a2.7 2.7 0 0 1 5.2 1c0 2-2.6 2.2-2.6 4M12 17h.01"/></svg></button></div></header>
 <div class="preview-warning" id="previewWarning">如果下方按钮没有反应，请用支持 JavaScript 的本地 HTML 查看器打开这个文件。</div>
 <div class="scene-frame" id="sceneFrame">
-<img class="room" id="room" src="panda-assets/living-ab8e0525e3a0.webp" alt="有沙发、书架和蓝色狗窝的客厅" draggable="false">
+<img class="room" id="room" fetchpriority="high" src="panda-assets/living-ab8e0525e3a0.webp" alt="有沙发、书架和蓝色狗窝的客厅" draggable="false">
 <section class="scene" id="scene" aria-label="熊猫的插画小家，点地板可以让它走过去">
 <button class="corner-label" id="sceneToggle" type="button" aria-expanded="false" aria-controls="sceneMenu" aria-label="在客厅，切换场景"><span id="sceneLabel">在客厅</span><span aria-hidden="true">▾</span></button>
 <div class="scene-menu" id="sceneMenu" role="group" aria-label="选择位置" hidden><div class="place-options" id="placeOptions"></div><div class="outing-entry"><button id="outingOpen" class="place-option" type="button"><span>出门</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5 9.5 3h5L16 5h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"/><circle cx="12" cy="12.5" r="4"/></svg></button></div></div><div class="scene-photo-actions"><button class="photo-in-scene" id="takePhoto" type="button" aria-label="立即截下当前场景">截图</button><button class="photo-in-scene" id="collageToggle" type="button" aria-expanded="false" aria-controls="photoMenu">合照 ▾</button></div><div id="photoMenu" class="photo-menu" role="group" aria-label="选择合照背景" hidden><button id="photoOutingOpen" class="place-option" type="button">出门合照</button><button id="roomPhotoOpen" class="place-option" type="button">在小家合照</button></div>
@@ -438,17 +445,17 @@ const cells=[[0,0,512,550],[472,0,496,550],[960,85,550,450],[0,560,530,450],[530
 const state={pose:0,x:40,y:75,rest:0,moving:false,timer:null,raf:null,motion:null,walkReady:false,walkFrame:0,facing:1,dialogStack:[],snapshotBlob:null,snapshotUrl:null};
 let sceneNoteTimer=null;
 let frisbeeFeature=null;
-const assets={atlas:new Image(),mask:new Image()};const cssAsset=name=>getComputedStyle(document.documentElement).getPropertyValue(name).trim().replace(/^url\((['"]?)(.*?)\1\)$/,'$2');assets.atlas.src=cssAsset('--atlas');assets.mask.src=cssAsset('--matte');
+const assets={atlas:new Image(),mask:new Image()};const cssAsset=name=>getComputedStyle(document.documentElement).getPropertyValue(name).trim().replace(/^url\((['"]?)(.*?)\1\)$/,'$2');assets.atlas.fetchPriority=assets.mask.fetchPriority='high';assets.atlas.src=cssAsset('--atlas');assets.mask.src=cssAsset('--matte');
 assets.pawOther=new Image();assets.pawOther.src=cssAsset('--paw-other');
 assets.pawFirst=new Image();assets.pawFirst.src=cssAsset('--paw-first');
 assets.sideLying=new Image();assets.sideLying.src=cssAsset('--side-lying');
 assets.sideHead=new Image();assets.sideHead.src=cssAsset('--side-head-raised');
-assets.idleRest=new Image();assets.idleRest.src=cssAsset('--idle-rest');
+assets.idleRest=new Image();assets.idleRest.fetchPriority='high';assets.idleRest.src=cssAsset('--idle-rest');
 state.sideHeadRaised=false;state.sideHeadTimer=null;
 state.pawSide=0;
 // Add future resting poses to restPoseData; selection, display, capture and stable state use this pool.
 const restPoseOptions=JSON.parse($('restPoseData').textContent).map(spec=>{
- if(spec.src){spec.image=new Image();spec.image.src=spec.src;}
+ if(spec.src){spec.image=new Image();spec.image.fetchPriority='high';spec.image.src=spec.src;}
  return spec;
 });
 function restPoseOption(pose){return restPoseOptions.find(spec=>spec.pose===pose);}
@@ -502,7 +509,7 @@ const places={
 };
 const placeImages={};
 for(const id of Object.keys(places)){
- const image=new Image();image.src=id==='living'?$('room').src:sceneFiles[id];placeImages[id]=image;
+ const image=new Image();image.fetchPriority='high';image.src=id==='living'?$('room').src:sceneFiles[id];placeImages[id]=image;
 }
 Object.assign(state,{viewScene:'living',dogScene:'living',sceneChange:0,sceneLoading:false,lastPageActivity:Date.now(),sleepTimer:null,autoLieSince:null,sleepPointers:new Set()});
 function canAutoSleep(){return !state.sitLieActive&&!frisbeeFeature?.active&&state.walkReady&&!state.sceneLoading&&!state.moving&&!bellyActive()&&(state.pose===0||isRestPose(state.pose)||state.pose===7)&&state.sleepPointers.size===0;}
@@ -934,7 +941,7 @@ const proneWagCanvas=$('proneWagCanvas'),proneWagMeta=JSON.parse($('proneWagData
 const proneWagAtlas=new Image();
 Object.assign(state,{proneWagReady:false,proneWagActive:false,proneWagTimer:null,proneWagToken:0,proneWagFrame:0,proneWagRun:null});
 async function prepareProneWag(){
- proneWagAtlas.src=proneWagMeta.src;await ready(proneWagAtlas);
+ proneWagAtlas.fetchPriority='high';proneWagAtlas.src=proneWagMeta.src;await ready(proneWagAtlas);
  const {cellWidth:w,cellHeight:h,cols,rows}=proneWagMeta;
  if(proneWagAtlas.naturalWidth!==w*cols||proneWagAtlas.naturalHeight!==h*rows)throw new Error('Invalid prone tail atlas');
  proneWagCanvas.width=w;proneWagCanvas.height=h;state.proneWagReady=true;
@@ -1246,7 +1253,8 @@ async function prepareAlphaMask(){
  // Restore the saved pose with its own artwork before showing the character.
  const restoredBelly=bellyActive()?prepareBelly():null;
  const restoredSitLie=state.pose===7?prepareSitLie().catch(error=>console.warn("Sit-to-side-lying animation unavailable",error)):null;
- const restoredProne=state.pose===2?prepareProneWag().catch(error=>console.warn("Prone tail animation unavailable",error)):null;
+ const earlyProne=prepareProneWag().catch(error=>console.warn("Prone tail animation unavailable",error));
+ const restoredProne=state.pose===2?earlyProne:null;
  await Promise.all([ready(assets.atlas),ready(assets.mask),ready(assets.pawOther),ready(assets.pawFirst),ready(assets.sideLying),ready(assets.sideHead),ready(assets.idleRest),...restPoseOptions.filter(spec=>spec.image).map(spec=>ready(spec.image)),prepareDirectionalWalk(),restoredBelly,restoredSitLie,restoredProne]);
  walkCanvas.width=cellWidth;walkCanvas.height=cellHeight;state.walkReady=true;
 const c=document.createElement('canvas');c.width=assets.mask.naturalWidth;c.height=assets.mask.naturalHeight;const context=c.getContext('2d');context.drawImage(assets.mask,0,0);const pixels=context.getImageData(0,0,c.width,c.height);for(let i=0;i<pixels.data.length;i+=4){pixels.data[i+3]=pixels.data[i];pixels.data[i]=255;pixels.data[i+1]=255;pixels.data[i+2]=255;}context.putImageData(pixels,0,0);document.documentElement.style.setProperty('--matte','url('+c.toDataURL('image/png')+')');sprite.style.maskMode='alpha';syncPresence();note(isHere()?(state.pose===5?'熊猫在这里睡着呢':'熊猫在这里'):'');document.documentElement.dataset.ready='true';
@@ -1256,7 +1264,6 @@ const c=document.createElement('canvas');c.width=assets.mask.naturalWidth;c.heig
  prepareBellyWag().catch(error=>console.warn("Belly tail animation unavailable",error));
  prepareSideProneBelly().catch(error=>console.warn("Side-prone belly transition unavailable",error));
  prepareIdleWag().catch(error=>console.warn("Idle tail animation unavailable",error));
- if(!restoredProne)prepareProneWag().catch(error=>console.warn("Prone tail animation unavailable",error));
  prepareSideProneWag().catch(error=>console.warn("Side-prone tail animation unavailable",error));
  if(!restoredSitLie)prepareSitLie().catch(error=>console.warn("Sit-to-side-lying animation unavailable",error));
 }
